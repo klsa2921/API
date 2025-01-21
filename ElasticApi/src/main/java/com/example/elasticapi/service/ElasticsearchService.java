@@ -17,7 +17,14 @@ import org.springframework.http.ResponseEntity;
 
 
 import java.io.IOException;
-
+import org.elasticsearch.action.search.SearchRequest;
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.client.RequestOptions;
+import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 @Service
 public class ElasticsearchService {
     @Autowired
@@ -51,5 +58,33 @@ public class ElasticsearchService {
         } else {
             return "Error calling API: " + response.getStatusCode();
         }
+    }
+
+    private final RestHighLevelClient client;
+
+    public ElasticsearchService(RestHighLevelClient client) {
+        this.client = client;
+    }
+
+    public String search3(String query) throws IOException {
+        try {
+            boolean isConnected = client.ping(RequestOptions.DEFAULT);
+            System.out.println("Elasticsearch connected: " + isConnected);
+            SearchRequest searchRequest = new SearchRequest("employee-parent-child25");
+            SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+//            searchSourceBuilder.query(QueryBuilders.matchQuery("fieldName", query));
+
+            searchSourceBuilder.query(QueryBuilders.queryStringQuery(query));
+            searchRequest.source(searchSourceBuilder);
+
+            SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
+
+            return searchResponse.toString();
+        }catch (Exception e){
+            System.err.println("Elasticsearch error: " + e.getStackTrace());
+            System.err.println("Details: " + e.getMessage());
+            return e.getMessage().toString();
+        }
+
     }
 }

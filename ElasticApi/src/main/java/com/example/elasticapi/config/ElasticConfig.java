@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestTemplate;
 
 import javax.sql.DataSource;
-
+import org.elasticsearch.client.RestClient;
+import org.elasticsearch.client.RestHighLevelClient;
 @Configuration
 public class ElasticConfig {
     @Value("${spring.elasticsearch.rest.uri}")
@@ -36,4 +37,12 @@ public class ElasticConfig {
     }
 
 
+    @Bean
+    public RestHighLevelClient restHighLevelClient() {
+        return new RestHighLevelClient(
+                RestClient.builder(
+                        new HttpHost("localhost", 9200, "http") // Adjust the host and port as needed
+                )
+        );
+    }
 }

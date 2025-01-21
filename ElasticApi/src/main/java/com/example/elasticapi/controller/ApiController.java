@@ -31,7 +31,7 @@ public class ApiController {
     @RequestMapping(value="/search",method= RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> search(@RequestBody String query) {
         try {
-            String response= elasticsearchService.search2(query);
+            String response= elasticsearchService.search3(query);
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Error: " + e.getMessage());
