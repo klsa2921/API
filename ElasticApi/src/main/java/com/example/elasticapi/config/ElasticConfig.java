@@ -7,6 +7,8 @@ import org.elasticsearch.client.RestClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestTemplate;
 
+import javax.sql.DataSource;
+
 @Configuration
 public class ElasticConfig {
     @Value("${spring.elasticsearch.rest.uri}")
@@ -32,4 +34,6 @@ public class ElasticConfig {
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
+
+
 }

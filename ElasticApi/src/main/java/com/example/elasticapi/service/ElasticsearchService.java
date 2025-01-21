@@ -30,11 +30,12 @@ public class ElasticsearchService {
 
     public String search( String queryJson) throws IOException {
         // Send the request to Elasticsearch with the query provided in the body
-        Request request = new Request("POST", "/employee-parent-child20/_search"); // Replace '/your-index/_search' with your Elasticsearch index and endpoint
+        Request request = new Request("POST", "/employee-parent-child25/_search"); // Replace '/your-index/_search' with your Elasticsearch index and endpoint
         request.setEntity(new org.apache.http.entity.StringEntity(queryJson, ContentType.APPLICATION_JSON));
 
         // Perform the request and get the response
         Response response = restClient.performRequest(request);
+
 
         // Convert the response to a string and return it
         return new String(response.getEntity().getContent().readAllBytes());

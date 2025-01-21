@@ -29,6 +29,8 @@ dependencies {
 	implementation("io.jsonwebtoken:jjwt-api:0.11.5")
 	implementation("io.jsonwebtoken:jjwt-impl:0.11.5")
 	implementation("io.jsonwebtoken:jjwt-jackson:0.11.5")
+	implementation("org.springframework:spring-jdbc:6.2.0")
+	implementation("org.xerial:sqlite-jdbc:3.39.2.0")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")
 	implementation("org.elasticsearch.client:elasticsearch-rest-high-level-client:7.10.0")
