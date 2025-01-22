@@ -45,6 +45,7 @@ public class SecurityConfig {
                         (authorize) -> authorize
 //                                .requestMatchers("/api/searchByUsingClient").hasRole("SEARCH")
                                 .requestMatchers(new AntPathRequestMatcher("/api/searchByUsingClient")).hasAuthority("ROLE_SEARCH")
+                                .requestMatchers(new AntPathRequestMatcher("/api/searchWithFilterByUsingRestAPI")).hasAuthority("ROLE_SEARCH")
 //                                .requestMatchers("/api/ingestByUsingClient").hasRole("INGEST")
                                 .requestMatchers(new AntPathRequestMatcher("/api/ingestByUsingClient")).hasAuthority("ROLE_INGEST")
                                 .anyRequest().authenticated()

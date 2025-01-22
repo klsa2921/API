@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 @Controller
 @RequestMapping(value = "/api")
@@ -54,6 +57,18 @@ public class ApiController {
 //            IndexResponse response= elasticsearchService.indexUsingElasticSearchClient(query);
 
             return ResponseEntity.ok("ingest sucessful");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Error: " + e.getMessage());
+        }
+    }
+
+    @RequestMapping(value="/searchWithFilterByUsingRestAPI",method= RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> searchWithFilterByUsingRestAPI(@RequestBody String query) {
+        try {
+            Map<String, Object> filters=new HashMap<>();
+            filters.put("relation","father");
+            String response= elasticsearchService.searchWithElasticSearchClientWithFilter(query,filters);
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Error: " + e.getMessage());
         }

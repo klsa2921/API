@@ -1,6 +1,7 @@
 package com.example.elasticapi.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.WrapperQueryBuilder;
 import org.elasticsearch.xcontent.XContentType;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,8 @@ import org.springframework.http.ResponseEntity;
 
 
 import java.io.IOException;
+import java.util.Map;
+
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
@@ -81,8 +84,10 @@ public class ElasticsearchService {
 
             WrapperQueryBuilder wrapperQuery = QueryBuilders.wrapperQuery(query);
             searchSourceBuilder.query(wrapperQuery);
-            searchRequest.source(searchSourceBuilder);
 
+
+
+            searchRequest.source(searchSourceBuilder);
             SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
 
             return searchResponse.toString();
@@ -94,6 +99,59 @@ public class ElasticsearchService {
 
     }
 
+    public String searchWithElasticSearchClientWithFilter(String query, Map<String, Object> filters) throws IOException {
+        try {
+
+
+            boolean isConnected = client.ping(RequestOptions.DEFAULT);
+            System.out.println("Elasticsearch connected: " + isConnected);
+            SearchRequest searchRequest = new SearchRequest("employee-parent-child25");
+            SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+
+            WrapperQueryBuilder wrapperQuery = QueryBuilders.wrapperQuery(query);
+            searchSourceBuilder.query(wrapperQuery);
+
+            if (filters != null && !filters.isEmpty()) {
+                BoolQueryBuilder boolQuery = QueryBuilders.boolQuery();
+                for (Map.Entry<String, Object> entry : filters.entrySet()) {
+                    String filterField = entry.getKey();
+                    Object filterValue = entry.getValue();
+                    boolQuery.must(QueryBuilders.termQuery(filterField, filterValue));
+                }
+                searchSourceBuilder.postFilter(boolQuery);
+            }
+
+            searchRequest.source(searchSourceBuilder);
+            SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
+
+            return searchResponse.toString();
+        }catch (Exception e){
+            System.err.println("Elasticsearch error: " + e.getStackTrace().toString());
+            System.err.println("Details: " + e.getMessage());
+            return e.getMessage().toString();
+        }
+
+    }
+
+    private String generateQueryWithFilter(String query,String filterField,String filterValue){
+        String filterQuery=String.format(
+                "{\n" +
+                        "    \"query\": {\n" +
+                        "        \"bool\": {\n" +
+                        "            \"filter\": [\n" +
+                        "                {\n" +
+                        "                    \"term\": {\n" +
+                        "                        \"%s\": \"%s\"\n" +
+                        "                    }\n" +
+                        "                }\n" +
+                        "            ], %s\n" +
+                        "        }\n" +
+                        "    }\n" +
+                        "}", filterField, filterValue, query);
+
+        return null;
+    }
+
     public IndexResponse  indexUsingElasticSearchClient(String data) throws IOException {
         IndexRequest request = new IndexRequest("test")
                 .id("AgfGjJQBB8VZaMJkGUtx")
@@ -102,3 +160,5 @@ public class ElasticsearchService {
     }
 
 }
+
+
