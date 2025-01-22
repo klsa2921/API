@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -28,29 +29,47 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf(customiser->customiser.disable())
-                .authorizeHttpRequests(req-> req.anyRequest().authenticated())
+//        return http.csrf(customiser->customiser.disable())
+//                .authorizeHttpRequests(req->req
+//                        .anyRequest().hasRole("SEARCH").requestMatchers("/api/searchByUsingClient").authenticated()
+//                        .anyRequest().hasRole("INGEST").requestMatchers("/api/ingestByUsingClient").authenticated()
+////                        .anyRequest().authenticated()
+//                )
+//                .httpBasic(Customizer.withDefaults())
+//                .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//                .build();
+
+        return http
+                .csrf(customiser->customiser.disable())
+                .authorizeHttpRequests(
+                        (authorize) -> authorize
+//                                .requestMatchers("/api/searchByUsingClient").hasRole("SEARCH")
+                                .requestMatchers(new AntPathRequestMatcher("/api/searchByUsingClient")).hasAuthority("ROLE_SEARCH")
+//                                .requestMatchers("/api/ingestByUsingClient").hasRole("INGEST")
+                                .requestMatchers(new AntPathRequestMatcher("/api/ingestByUsingClient")).hasAuthority("ROLE_INGEST")
+                                .anyRequest().authenticated()
+                )
                 .httpBasic(Customizer.withDefaults())
-                .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .build();
 
     }
 
-    @Bean
-    public UserDetailsService userDetailsService(){
-        UserDetails user1= User.withDefaultPasswordEncoder()
-                .username("admin")
-                .password("klsa")
-                .roles("ADMIN")
-                .build();
-
-        UserDetails user2= User.withDefaultPasswordEncoder()
-                .username("user2")
-                .password("user")
-                .roles("SEARCH")
-                .build();
-        return new InMemoryUserDetailsManager(user1,user2);
-    }
+//    @Bean
+//    public UserDetailsService userDetailsService(){
+//        UserDetails user1= User.withDefaultPasswordEncoder()
+//                .username("admin")
+//                .password("klsa")
+//                .roles("ADMIN")
+//                .build();
+//
+//        UserDetails user2= User.withDefaultPasswordEncoder()
+//                .username("user2")
+//                .password("user")
+//                .roles("SEARCH")
+//                .build();
+//        return new InMemoryUserDetailsManager(user1,user2);
+//    }
 
     @Bean
     public AuthenticationProvider authenticationProvider(){

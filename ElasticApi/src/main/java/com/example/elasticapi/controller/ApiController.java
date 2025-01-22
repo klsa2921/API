@@ -1,6 +1,7 @@
 package com.example.elasticapi.controller;
 
 import com.example.elasticapi.service.ElasticsearchService;
+import org.elasticsearch.action.index.IndexResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.elasticsearch.action.search.SearchResponse;
 
 
 @Controller
@@ -28,13 +28,35 @@ public class ApiController {
         this.elasticsearchService = elasticsearchService;
     }
 
-    @RequestMapping(value="/search",method= RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> search(@RequestBody String query) {
+    @RequestMapping(value="/searchByUsingClient",method= RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> searchByUsingClient(@RequestBody String query) {
         try {
-            String response= elasticsearchService.search3(query);
+            String response= elasticsearchService.searchWithElasticSearchClient(query);
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Error: " + e.getMessage());
         }
     }
+
+    @RequestMapping(value="/searchByUsingRestAPI",method= RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> searchByUsingRestAPI(@RequestBody String query) {
+        try {
+            String response= elasticsearchService.searchWithRestAPI(query);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Error: " + e.getMessage());
+        }
+    }
+
+    @RequestMapping(value="/ingestByUsingRestAPI",method= RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> ingestByUsingRestAPI(@RequestBody String query) {
+        try {
+//            IndexResponse response= elasticsearchService.indexUsingElasticSearchClient(query);
+
+            return ResponseEntity.ok("ingest sucessful");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Error: " + e.getMessage());
+        }
+    }
+
 }

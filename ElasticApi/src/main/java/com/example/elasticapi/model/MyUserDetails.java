@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MyUserDetails implements UserDetails {
 
@@ -16,9 +17,20 @@ public class MyUserDetails implements UserDetails {
         this.user=user;
     }
 
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        return Collections.singleton( new SimpleGrantedAuthority("USER"));
+//    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton( new SimpleGrantedAuthority("USER"));
+        // Convert the roles from user model to SimpleGrantedAuthority
+        List<GrantedAuthority> authorities = user.getRole().stream()
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.name()))
+                .collect(Collectors.toList());
+
+        authorities.forEach(authority -> System.out.println("Granted Authority: " + authority.getAuthority()));
+        return authorities;
     }
 
     @Override

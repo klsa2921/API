@@ -1,0 +1,317 @@
+{
+	"info": {
+		"_postman_id": "085368ce-6b1a-49c4-b34b-7b4aedae076a",
+		"name": "ElasticApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19631002"
+	},
+	"item": [
+		{
+			"name": "searchByElasticClient",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "klsa",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n        \"bool\": {\r\n            \"must\": [\r\n                {\r\n                    \"has_child\": {\r\n                        \"type\": \"leaves\",\r\n                        \"query\": {\r\n                            \"range\": {\r\n                                \"leave_start_date\": {\r\n                                    \"gte\": \"2025-01-01\",\r\n                                    \"lte\": \"2025-01-31\"\r\n                                }\r\n                            }\r\n                        },\r\n                        \"inner_hits\": {\r\n                            \"name\": \"january_leaves\",\r\n                            \"size\": 10\r\n                        }\r\n                    }\r\n                },\r\n                {\r\n                    \"has_child\": {\r\n                        \"type\": \"leaves\",\r\n                        \"query\": {\r\n                            \"range\": {\r\n                                \"leave_start_date\": {\r\n                                    \"gte\": \"2025-08-01\",\r\n                                    \"lte\": \"2025-08-31\"\r\n                                }\r\n                            }\r\n                        },\r\n                        \"inner_hits\": {\r\n                            \"name\": \"august_leaves\",\r\n                            \"size\": 10\r\n                        }\r\n                    }\r\n                }\r\n            ]\r\n        }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/searchByUsingClient",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"searchByUsingClient"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "searchByElasticClient",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n        \"bool\": {\r\n            \"must\": [\r\n                {\r\n                    \"range\": {\r\n                                \"age\": {\r\n                                    \"gte\": 30,\r\n                                    \"lte\": 60\r\n                                }\r\n                            }\r\n                }\r\n            ]\r\n        }\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/searchByUsingClient",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"searchByUsingClient"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "3129"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 Jan 2025 10:49:49 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"took\": 3,\n    \"timed_out\": false,\n    \"_shards\": {\n        \"total\": 1,\n        \"successful\": 1,\n        \"skipped\": 0,\n        \"failed\": 0\n    },\n    \"hits\": {\n        \"total\": {\n            \"value\": 36,\n            \"relation\": \"eq\"\n        },\n        \"max_score\": 1,\n        \"hits\": [\n            {\n                \"_index\": \"employee-parent-child25\",\n                \"_id\": \"fam001\",\n                \"_score\": 1,\n                \"_routing\": \"emp12345\",\n                \"_source\": {\n                    \"empid\": \"emp12345\",\n                    \"relation\": \"Father\",\n                    \"name\": \"Robert Doe\",\n                    \"age\": \"55\",\n                    \"occupation\": \"Engineer\",\n                    \"contact\": \"123-456-7890\",\n                    \"tablename\": \"family\",\n                    \"emp-join-field\": {\n                        \"name\": \"family\",\n                        \"parent\": \"emp12345\"\n                    }\n                }\n            },\n            {\n                \"_index\": \"employee-parent-child25\",\n                \"_id\": \"fam002\",\n                \"_score\": 1,\n                \"_routing\": \"emp12345\",\n                \"_source\": {\n                    \"empid\": \"emp12345\",\n                    \"relation\": \"Mother\",\n                    \"name\": \"Jane Doe\",\n                    \"age\": \"50\",\n                    \"occupation\": \"Teacher\",\n                    \"contact\": \"123-456-7891\",\n                    \"tablename\": \"family\",\n                    \"emp-join-field\": {\n                        \"name\": \"family\",\n                        \"parent\": \"emp12345\"\n                    }\n                }\n            },\n            {\n                \"_index\": \"employee-parent-child25\",\n                \"_id\": \"fam003\",\n                \"_score\": 1,\n                \"_routing\": \"emp12346\",\n                \"_source\": {\n                    \"empid\": \"emp12346\",\n                    \"relation\": \"Father\",\n                    \"name\": \"Mark Smith\",\n                    \"age\": \"58\",\n                    \"occupation\": \"Doctor\",\n                    \"contact\": \"987-654-3210\",\n                    \"tablename\": \"family\",\n                    \"emp-join-field\": {\n                        \"name\": \"family\",\n                        \"parent\": \"emp12346\"\n                    }\n                }\n            },\n            {\n                \"_index\": \"employee-parent-child25\",\n                \"_id\": \"fam004\",\n                \"_score\": 1,\n                \"_routing\": \"emp12346\",\n                \"_source\": {\n                    \"empid\": \"emp12346\",\n                    \"relation\": \"Mother\",\n                    \"name\": \"Lisa Smith\",\n                    \"age\": \"52\",\n                    \"occupation\": \"Nurse\",\n                    \"contact\": \"987-654-3211\",\n                    \"tablename\": \"family\",\n                    \"emp-join-field\": {\n                        \"name\": \"family\",\n                        \"parent\": \"emp12346\"\n                    }\n                }\n            },\n            {\n                \"_index\": \"employee-parent-child25\",\n                \"_id\": \"fam005\",\n                \"_score\": 1,\n                \"_routing\": \"emp12347\",\n                \"_source\": {\n                    \"empid\": \"emp12347\",\n                    \"relation\": \"Father\",\n                    \"name\": \"Richard Brown\",\n                    \"age\": \"60\",\n                    \"occupation\": \"Architect\",\n                    \"contact\": \"555-555-5555\",\n                    \"tablename\": \"family\",\n                    \"emp-join-field\": {\n                        \"name\": \"family\",\n                        \"parent\": \"emp12347\"\n                    }\n                }\n            },\n            {\n                \"_index\": \"employee-parent-child25\",\n                \"_id\": \"fam006\",\n                \"_score\": 1,\n                \"_routing\": \"emp12347\",\n                \"_source\": {\n                    \"empid\": \"emp12347\",\n                    \"relation\": \"Mother\",\n                    \"name\": \"Patricia Brown\",\n                    \"age\": \"57\",\n                    \"occupation\": \"Designer\",\n                    \"contact\": \"555-555-5556\",\n                    \"tablename\": \"family\",\n                    \"emp-join-field\": {\n                        \"name\": \"family\",\n                        \"parent\": \"emp12347\"\n                    }\n                }\n            },\n            {\n                \"_index\": \"employee-parent-child25\",\n                \"_id\": \"fam007\",\n                \"_score\": 1,\n                \"_routing\": \"emp12347\",\n                \"_source\": {\n                    \"empid\": \"emp12347\",\n                    \"relation\": \"Sister\",\n                    \"name\": \"Emily Brown\",\n                    \"age\": \"30\",\n                    \"occupation\": \"Teacher\",\n                    \"contact\": \"555-555-5557\",\n                    \"tablename\": \"family\",\n                    \"emp-join-field\": {\n                        \"name\": \"family\",\n                        \"parent\": \"emp12347\"\n                    }\n                }\n            },\n            {\n                \"_index\": \"employee-parent-child25\",\n                \"_id\": \"fam008\",\n                \"_score\": 1,\n                \"_routing\": \"emp12348\",\n                \"_source\": {\n                    \"empid\": \"emp12348\",\n                    \"relation\": \"Husband\",\n                    \"name\": \"Michael Davis\",\n                    \"age\": \"30\",\n                    \"occupation\": \"Software Developer\",\n                    \"contact\": \"333-333-3333\",\n                    \"tablename\": \"family\",\n                    \"emp-join-field\": {\n                        \"name\": \"family\",\n                        \"parent\": \"emp12348\"\n                    }\n                }\n            },\n            {\n                \"_index\": \"employee-parent-child25\",\n                \"_id\": \"fam011\",\n                \"_score\": 1,\n                \"_routing\": \"emp12349\",\n                \"_source\": {\n                    \"empid\": \"emp12349\",\n                    \"relation\": \"Father\",\n                    \"name\": \"David Wilson\",\n                    \"age\": \"60\",\n                    \"occupation\": \"Retired\",\n                    \"contact\": \"444-444-4445\",\n                    \"tablename\": \"family\",\n                    \"emp-join-field\": {\n                        \"name\": \"family\",\n                        \"parent\": \"emp12349\"\n                    }\n                }\n            },\n            {\n                \"_index\": \"employee-parent-child25\",\n                \"_id\": \"fam014\",\n                \"_score\": 1,\n                \"_routing\": \"emp12351\",\n                \"_source\": {\n                    \"empid\": \"emp12351\",\n                    \"relation\": \"Father\",\n                    \"name\": \"James Anderson\",\n                    \"age\": \"58\",\n                    \"occupation\": \"Construction Worker\",\n                    \"contact\": \"555-555-5557\",\n                    \"tablename\": \"family\",\n                    \"emp-join-field\": {\n                        \"name\": \"family\",\n                        \"parent\": \"emp12351\"\n                    }\n                }\n            }\n        ]\n    }\n}"
+				},
+				{
+					"name": "searchByElasticClient",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n        \"bool\": {\r\n            \"must\": [\r\n                {\r\n                    \"has_child\": {\r\n                        \"type\": \"leaves\",\r\n                        \"query\": {\r\n                            \"range\": {\r\n                                \"leave_start_date\": {\r\n                                    \"gte\": \"2025-01-01\",\r\n                                    \"lte\": \"2025-01-31\"\r\n                                }\r\n                            }\r\n                        },\r\n                        \"inner_hits\": {\r\n                            \"name\": \"january_leaves\",\r\n                            \"size\": 10\r\n                        }\r\n                    }\r\n                },\r\n                {\r\n                    \"has_child\": {\r\n                        \"type\": \"leaves\",\r\n                        \"query\": {\r\n                            \"range\": {\r\n                                \"leave_start_date\": {\r\n                                    \"gte\": \"2025-08-01\",\r\n                                    \"lte\": \"2025-08-31\"\r\n                                }\r\n                            }\r\n                        },\r\n                        \"inner_hits\": {\r\n                            \"name\": \"august_leaves\",\r\n                            \"size\": 10\r\n                        }\r\n                    }\r\n                }\r\n            ]\r\n        }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/searchByUsingClient",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"searchByUsingClient"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "11990"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 Jan 2025 10:53:25 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"took\": 8,\n    \"timed_out\": false,\n    \"_shards\": {\n        \"total\": 1,\n        \"successful\": 1,\n        \"skipped\": 0,\n        \"failed\": 0\n    },\n    \"hits\": {\n        \"total\": {\n            \"value\": 17,\n            \"relation\": \"eq\"\n        },\n        \"max_score\": 2,\n        \"hits\": [\n            {\n                \"_index\": \"employee-parent-child25\",\n                \"_id\": \"emp12346\",\n                \"_score\": 2,\n                \"_source\": {\n                    \"empid\": \"emp12346\",\n                    \"empname\": \"Jane Smith\",\n                    \"role\": \"Admin#HR\",\n                    \"tablename\": \"employee\",\n                    \"emp-join-field\": {\n                        \"name\": \"employee\"\n                    }\n                },\n                \"inner_hits\": {\n                    \"august_leaves\": {\n                        \"hits\": {\n                            \"total\": {\n                                \"value\": 1,\n                                \"relation\": \"eq\"\n                            },\n                            \"max_score\": 1,\n                            \"hits\": [\n                                {\n                                    \"_index\": \"employee-parent-child25\",\n                                    \"_id\": \"leave141\",\n                                    \"_score\": 1,\n                                    \"_routing\": \"emp12346\",\n                                    \"_source\": {\n                                        \"id\": \"leave141\",\n                                        \"empid\": \"emp12346\",\n                                        \"leave_type\": \"personal\",\n                                        \"leave_start_date\": \"2025-08-17\",\n                                        \"leave_end_date\": \"2025-08-20\",\n                                        \"number_of_days\": 4,\n                                        \"leave_status\": \"pending\",\n                                        \"tablename\": \"leaves\",\n                                        \"emp-join-field\": {\n                                            \"name\": \"leaves\",\n                                            \"parent\": \"emp12346\"\n                                        }\n                                    }\n                                }\n                            ]\n                        }\n                    },\n                    \"january_leaves\": {\n                        \"hits\": {\n                            \"total\": {\n                                \"value\": 1,\n                                \"relation\": \"eq\"\n                            },\n                            \"max_score\": 1,\n                            \"hits\": [\n                                {\n                                    \"_index\": \"employee-parent-child25\",\n                                    \"_id\": \"leave064\",\n                                    \"_score\": 1,\n                                    \"_routing\": \"emp12346\",\n                                    \"_source\": {\n                                        \"id\": \"leave064\",\n                                        \"empid\": \"emp12346\",\n                                        \"leave_type\": \"vacation\",\n                                        \"leave_start_date\": \"2025-01-13\",\n                                        \"leave_end_date\": \"2025-01-16\",\n                                        \"number_of_days\": 4,\n                                        \"leave_status\": \"approved\",\n                                        \"tablename\": \"leaves\",\n                                        \"emp-join-field\": {\n                                            \"name\": \"leaves\",\n                                            \"parent\": \"emp12346\"\n                                        }\n                                    }\n                                }\n                            ]\n                        }\n                    }\n                }\n            },\n            {\n                \"_index\": \"employee-parent-child25\",\n                \"_id\": \"emp12348\",\n                \"_score\": 2,\n                \"_source\": {\n                    \"empid\": \"emp12348\",\n                    \"empname\": \"Emily Davis\",\n                    \"role\": \"Super Admin\",\n                    \"tablename\": \"employee\",\n                    \"emp-join-field\": {\n                        \"name\": \"employee\"\n                    }\n                },\n                \"inner_hits\": {\n                    \"august_leaves\": {\n                        \"hits\": {\n                            \"total\": {\n                                \"value\": 1,\n                                \"relation\": \"eq\"\n                            },\n                            \"max_score\": 1,\n                            \"hits\": [\n                                {\n                                    \"_index\": \"employee-parent-child25\",\n                                    \"_id\": \"leave170\",\n                                    \"_score\": 1,\n                                    \"_routing\": \"emp12348\",\n                                    \"_source\": {\n                                        \"id\": \"leave170\",\n                                        \"empid\": \"emp12348\",\n                                        \"leave_type\": \"sick\",\n                                        \"leave_start_date\": \"2025-08-24\",\n                                        \"leave_end_date\": \"2025-08-28\",\n                                        \"number_of_days\": 5,\n                                        \"leave_status\": \"denied\",\n                                        \"tablename\": \"leaves\",\n                                        \"emp-join-field\": {\n                                            \"name\": \"leaves\",\n                                            \"parent\": \"emp12348\"\n                                        }\n                                    }\n                                }\n                            ]\n                        }\n                    },\n                    \"january_leaves\": {\n                        \"hits\": {\n                            \"total\": {\n                                \"value\": 1,\n                                \"relation\": \"eq\"\n                            },\n                            \"max_score\": 1,\n                            \"hits\": [\n                                {\n                                    \"_index\": \"employee-parent-child25\",\n                                    \"_id\": \"leave166\",\n                                    \"_score\": 1,\n                                    \"_routing\": \"emp12348\",\n                                    \"_source\": {\n                                        \"id\": \"leave166\",\n                                        \"empid\": \"emp12348\",\n                                        \"leave_type\": \"sick\",\n                                        \"leave_start_date\": \"2025-01-24\",\n                                        \"leave_end_date\": \"2025-01-28\",\n                                        \"number_of_days\": 5,\n                                        \"leave_status\": \"denied\",\n                                        \"tablename\": \"leaves\",\n                                        \"emp-join-field\": {\n                                            \"name\": \"leaves\",\n                                            \"parent\": \"emp12348\"\n                                        }\n                                    }\n                                }\n                            ]\n                        }\n                    }\n                }\n            },\n            {\n                \"_index\": \"employee-parent-child25\",\n                \"_id\": \"emp12349\",\n                \"_score\": 2,\n                \"_source\": {\n                    \"empid\": \"emp12349\",\n                    \"empname\": \"Michael Wilson\",\n                    \"role\": \"Admin#HR#Manager#Team Lead\",\n                    \"tablename\": \"employee\",\n                    \"emp-join-field\": {\n                        \"name\": \"employee\"\n                    }\n                },\n                \"inner_hits\": {\n                    \"august_leaves\": {\n                        \"hits\": {\n                            \"total\": {\n                                \"value\": 1,\n                                \"relation\": \"eq\"\n                            },\n                            \"max_score\": 1,\n                            \"hits\": [\n                                {\n                                    \"_index\": \"employee-parent-child25\",\n                                    \"_id\": \"leave149\",\n                                    \"_score\": 1,\n                                    \"_routing\": \"emp12349\",\n                                    \"_source\": {\n                                        \"id\": \"leave149\",\n                                        \"empid\": \"emp12349\",\n                                        \"leave_type\": \"vacation\",\n                                        \"leave_start_date\": \"2025-08-02\",\n                                        \"leave_end_date\": \"2025-08-05\",\n                                        \"number_of_days\": 4,\n                                        \"leave_status\": \"approved\",\n                                        \"tablename\": \"leaves\",\n                                        \"emp-join-field\": {\n                                            \"name\": \"leaves\",\n                                            \"parent\": \"emp12349\"\n                                        }\n                                    }\n                                }\n                            ]\n                        }\n                    },\n                    \"january_leaves\": {\n                        \"hits\": {\n                            \"total\": {\n                                \"value\": 1,\n                                \"relation\": \"eq\"\n                            },\n                            \"max_score\": 1,\n                            \"hits\": [\n                                {\n                                    \"_index\": \"employee-parent-child25\",\n                                    \"_id\": \"leave050\",\n                                    \"_score\": 1,\n                                    \"_routing\": \"emp12349\",\n                                    \"_source\": {\n                                        \"id\": \"leave050\",\n                                        \"empid\": \"emp12349\",\n                                        \"leave_type\": \"personal\",\n                                        \"leave_start_date\": \"2025-01-03\",\n                                        \"leave_end_date\": \"2025-01-06\",\n                                        \"number_of_days\": 4,\n                                        \"leave_status\": \"denied\",\n                                        \"tablename\": \"leaves\",\n                                        \"emp-join-field\": {\n                                            \"name\": \"leaves\",\n                                            \"parent\": \"emp12349\"\n                                        }\n                                    }\n                                }\n                            ]\n                        }\n                    }\n                }\n            },\n            {\n                \"_index\": \"employee-parent-child25\",\n                \"_id\": \"emp12350\",\n                \"_score\": 2,\n                \"_source\": {\n                    \"empid\": \"emp12350\",\n                    \"empname\": \"Olivia Taylor\",\n                    \"role\": \"Admin#HR\",\n                    \"tablename\": \"employee\",\n                    \"emp-join-field\": {\n                        \"name\": \"employee\"\n                    }\n                },\n                \"inner_hits\": {\n                    \"august_leaves\": {\n                        \"hits\": {\n                            \"total\": {\n                                \"value\": 1,\n                                \"relation\": \"eq\"\n                            },\n                            \"max_score\": 1,\n                            \"hits\": [\n                                {\n                                    \"_index\": \"employee-parent-child25\",\n                                    \"_id\": \"leave215\",\n                                    \"_score\": 1,\n                                    \"_routing\": \"emp12350\",\n                                    \"_source\": {\n                                        \"id\": \"leave215\",\n                                        \"empid\": \"emp12350\",\n                                        \"leave_type\": \"vacation\",\n                                        \"leave_start_date\": \"2025-08-15\",\n                                        \"leave_end_date\": \"2025-08-21\",\n                                        \"number_of_days\": 7,\n                                        \"leave_status\": \"approved\",\n                                        \"tablename\": \"leaves\",\n                                        \"emp-join-field\": {\n                                            \"name\": \"leaves\",\n                                            \"parent\": \"emp12350\"\n                                        }\n                                    }\n                                }\n                            ]\n                        }\n                    },\n                    \"january_leaves\": {\n                        \"hits\": {\n                            \"total\": {\n                                \"value\": 2,\n                                \"relation\": \"eq\"\n                            },\n                            \"max_score\": 1,\n                            \"hits\": [\n                                {\n                                    \"_index\": \"employee-parent-child25\",\n                                    \"_id\": \"leave060\",\n                                    \"_score\": 1,\n                                    \"_routing\": \"emp12350\",\n                                    \"_source\": {\n                                        \"id\": \"leave060\",\n                                        \"empid\": \"emp12350\",\n                                        \"leave_type\": \"vacation\",\n                                        \"leave_start_date\": \"2025-01-30\",\n                                        \"leave_end_date\": \"2025-02-03\",\n                                        \"number_of_days\": 5,\n                                        \"leave_status\": \"pending\",\n                                        \"tablename\": \"leaves\",\n                                        \"emp-join-field\": {\n                                            \"name\": \"leaves\",\n                                            \"parent\": \"emp12350\"\n                                        }\n                                    }\n                                },\n                                {\n                                    \"_index\": \"employee-parent-child25\",\n                                    \"_id\": \"leave204\",\n                                    \"_score\": 1,\n                                    \"_routing\": \"emp12350\",\n                                    \"_source\": {\n                                        \"id\": \"leave204\",\n                                        \"empid\": \"emp12350\",\n                                        \"leave_type\": \"vacation\",\n                                        \"leave_start_date\": \"2025-01-10\",\n                                        \"leave_end_date\": \"2025-01-14\",\n                                        \"number_of_days\": 5,\n                                        \"leave_status\": \"approved\",\n                                        \"tablename\": \"leaves\",\n                                        \"emp-join-field\": {\n                                            \"name\": \"leaves\",\n                                            \"parent\": \"emp12350\"\n                                        }\n                                    }\n                                }\n                            ]\n                        }\n                    }\n                }\n            },\n            {\n                \"_index\": \"employee-parent-child25\",\n                \"_id\": \"emp12351\",\n                \"_score\": 2,\n                \"_source\": {\n                    \"empid\": \"emp12351\",\n                    \"empname\": \"William Anderson\",\n                    \"role\": \"Admin#HR#Manager\",\n                    \"tablename\": \"employee\",\n                    \"emp-join-field\": {\n                        \"name\": \"employee\"\n                    }\n                },\n                \"inner_hits\": {\n                    \"august_leaves\": {\n                        \"hits\": {\n                            \"total\": {\n                                \"value\": 1,\n                                \"relation\": \"eq\"\n                            },\n                            \"max_score\": 1,\n                            \"hits\": [\n                                {\n                                    \"_index\": \"employee-parent-child25\",\n                                    \"_id\": \"leave059\",\n                                    \"_score\": 1,\n                                    \"_routing\": \"emp12351\",\n                                    \"_source\": {\n                                        \"id\": \"leave059\",\n                                        \"empid\": \"emp12351\",\n                                        \"leave_type\": \"personal\",\n                                        \"leave_start_date\": \"2025-08-25\",\n                                        \"leave_end_date\": \"2025-08-28\",\n                                        \"number_of_days\": 4,\n                                        \"leave_status\": \"denied\",\n                                        \"tablename\": \"leaves\",\n                                        \"emp-join-field\": {\n                                            \"name\": \"leaves\",\n                                            \"parent\": \"emp12351\"\n                                        }\n                                    }\n                                }\n                            ]\n                        }\n                    },\n                    \"january_leaves\": {\n                        \"hits\": {\n                            \"total\": {\n                                \"value\": 2,\n                                \"relation\": \"eq\"\n                            },\n                            \"max_score\": 1,\n                            \"hits\": [\n                                {\n                                    \"_index\": \"employee-parent-child25\",\n                                    \"_id\": \"leave098\",\n                                    \"_score\": 1,\n                                    \"_routing\": \"emp12351\",\n                                    \"_source\": {\n                                        \"id\": \"leave098\",\n                                        \"empid\": \"emp12351\",\n                                        \"leave_type\": \"sick\",\n                                        \"leave_start_date\": \"2025-01-20\",\n                                        \"leave_end_date\": \"2025-01-22\",\n                                        \"number_of_days\": 3,\n                                        \"leave_status\": \"denied\",\n                                        \"tablename\": \"leaves\",\n                                        \"emp-join-field\": {\n                                            \"name\": \"leaves\",\n                                            \"parent\": \"emp12351\"\n                                        }\n                                    }\n                                },\n                                {\n                                    \"_index\": \"employee-parent-child25\",\n                                    \"_id\": \"leave201\",\n                                    \"_score\": 1,\n                                    \"_routing\": \"emp12351\",\n                                    \"_source\": {\n                                        \"id\": \"leave201\",\n                                        \"empid\": \"emp12351\",\n                                        \"leave_type\": \"vacation\",\n                                        \"leave_start_date\": \"2025-01-10\",\n                                        \"leave_end_date\": \"2025-01-14\",\n                                        \"number_of_days\": 5,\n                                        \"leave_status\": \"approved\",\n                                        \"tablename\": \"leaves\",\n                                        \"emp-join-field\": {\n                                            \"name\": \"leaves\",\n                                            \"parent\": \"emp12351\"\n                                        }\n                                    }\n                                }\n                            ]\n                        }\n                    }\n                }\n            },\n            {\n                \"_index\": \"employee-parent-child25\",\n                \"_id\": \"emp12352\",\n                \"_score\": 2,\n                \"_source\": {\n                    \"empid\": \"emp12352\",\n                    \"empname\": \"Isabella Thomas\",\n                    \"role\": \"Super Admin\",\n                    \"tablename\": \"employee\",\n                    \"emp-join-field\": {\n                        \"name\": \"employee\"\n                    }\n                },\n                \"inner_hits\": {\n                    \"august_leaves\": {\n                        \"hits\": {\n                            \"total\": {\n                                \"value\": 1,\n                                \"relation\": \"eq\"\n                            },\n                            \"max_score\": 1,\n                            \"hits\": [\n                                {\n                                    \"_index\": \"employee-parent-child25\",\n                                    \"_id\": \"leave111\",\n                                    \"_score\": 1,\n                                    \"_routing\": \"emp12352\",\n                                    \"_source\": {\n                                        \"id\": \"leave111\",\n                                        \"empid\": \"emp12352\",\n                                        \"leave_type\": \"sick\",\n                                        \"leave_start_date\": \"2025-08-21\",\n                                        \"leave_end_date\": \"2025-08-25\",\n                                        \"number_of_days\": 5,\n                                        \"leave_status\": \"denied\",\n                                        \"tablename\": \"leaves\",\n                                        \"emp-join-field\": {\n                                            \"name\": \"leaves\",\n                                            \"parent\": \"emp12352\"\n                                        }\n                                    }\n                                }\n                            ]\n                        }\n                    },\n                    \"january_leaves\": {\n                        \"hits\": {\n                            \"total\": {\n                                \"value\": 1,\n                                \"relation\": \"eq\"\n                            },\n                            \"max_score\": 1,\n                            \"hits\": [\n                                {\n                                    \"_index\": \"employee-parent-child25\",\n                                    \"_id\": \"leave210\",\n                                    \"_score\": 1,\n                                    \"_routing\": \"emp12352\",\n                                    \"_source\": {\n                                        \"id\": \"leave210\",\n                                        \"empid\": \"emp12352\",\n                                        \"leave_type\": \"vacation\",\n                                        \"leave_start_date\": \"2025-01-10\",\n                                        \"leave_end_date\": \"2025-01-14\",\n                                        \"number_of_days\": 5,\n                                        \"leave_status\": \"approved\",\n                                        \"tablename\": \"leaves\",\n                                        \"emp-join-field\": {\n                                            \"name\": \"leaves\",\n                                            \"parent\": \"emp12352\"\n                                        }\n                                    }\n                                }\n                            ]\n                        }\n                    }\n                }\n            },\n            {\n                \"_index\": \"employee-parent-child25\",\n                \"_id\": \"emp12354\",\n                \"_score\": 2,\n                \"_source\": {\n                    \"empid\": \"emp12354\",\n                    \"empname\": \"Sophia White\",\n                    \"role\": \"Admin\",\n                    \"tablename\": \"employee\",\n                    \"emp-join-field\": {\n                        \"name\": \"employee\"\n                    }\n                },\n                \"inner_hits\": {\n                    \"august_leaves\": {\n                        \"hits\": {\n                            \"total\": {\n                                \"value\": 1,\n                                \"relation\": \"eq\"\n                            },\n                            \"max_score\": 1,\n                            \"hits\": [\n                                {\n                                    \"_index\": \"employee-parent-child25\",\n                                    \"_id\": \"leave211\",\n                                    \"_score\": 1,\n                                    \"_routing\": \"emp12354\",\n                                    \"_source\": {\n                                        \"id\": \"leave211\",\n                                        \"empid\": \"emp12354\",\n                                        \"leave_type\": \"vacation\",\n                                        \"leave_start_date\": \"2025-08-15\",\n                                        \"leave_end_date\": \"2025-08-21\",\n                                        \"number_of_days\": 7,\n                                        \"leave_status\": \"approved\",\n                                        \"tablename\": \"leaves\",\n                                        \"emp-join-field\": {\n                                            \"name\": \"leaves\",\n                                            \"parent\": \"emp12354\"\n                                        }\n                                    }\n                                }\n                            ]\n                        }\n                    },\n                    \"january_leaves\": {\n                        \"hits\": {\n                            \"total\": {\n                                \"value\": 1,\n                                \"relation\": \"eq\"\n                            },\n                            \"max_score\": 1,\n                            \"hits\": [\n                                {\n                                    \"_index\": \"employee-parent-child25\",\n                                    \"_id\": \"leave113\",\n                                    \"_score\": 1,\n                                    \"_routing\": \"emp12354\",\n                                    \"_source\": {\n                                        \"id\": \"leave113\",\n                                        \"empid\": \"emp12354\",\n                                        \"leave_type\": \"sick\",\n                                        \"leave_start_date\": \"2025-01-28\",\n                                        \"leave_end_date\": \"2025-01-31\",\n                                        \"number_of_days\": 4,\n                                        \"leave_status\": \"pending\",\n                                        \"tablename\": \"leaves\",\n                                        \"emp-join-field\": {\n                                            \"name\": \"leaves\",\n                                            \"parent\": \"emp12354\"\n                                        }\n                                    }\n                                }\n                            ]\n                        }\n                    }\n                }\n            },\n            {\n                \"_index\": \"employee-parent-child25\",\n                \"_id\": \"emp12356\",\n                \"_score\": 2,\n                \"_source\": {\n                    \"empid\": \"emp12356\",\n                    \"empname\": \"Anna Lee\",\n                    \"role\": \"Admin#HR#Manager\",\n                    \"tablename\": \"employee\",\n                    \"emp-join-field\": {\n                        \"name\": \"employee\"\n                    }\n                },\n                \"inner_hits\": {\n                    \"august_leaves\": {\n                        \"hits\": {\n                            \"total\": {\n                                \"value\": 1,\n                                \"relation\": \"eq\"\n                            },\n                            \"max_score\": 1,\n                            \"hits\": [\n                                {\n                                    \"_index\": \"employee-parent-child25\",\n                                    \"_id\": \"leave217\",\n                                    \"_score\": 1,\n                                    \"_routing\": \"emp12356\",\n                                    \"_source\": {\n                                        \"id\": \"leave217\",\n                                        \"empid\": \"emp12356\",\n                                        \"leave_type\": \"vacation\",\n                                        \"leave_start_date\": \"2025-08-15\",\n                                        \"leave_end_date\": \"2025-08-21\",\n                                        \"number_of_days\": 7,\n                                        \"leave_status\": \"approved\",\n                                        \"tablename\": \"leaves\",\n                                        \"emp-join-field\": {\n                                            \"name\": \"leaves\",\n                                            \"parent\": \"emp12356\"\n                                        }\n                                    }\n                                }\n                            ]\n                        }\n                    },\n                    \"january_leaves\": {\n                        \"hits\": {\n                            \"total\": {\n                                \"value\": 1,\n                                \"relation\": \"eq\"\n                            },\n                            \"max_score\": 1,\n                            \"hits\": [\n                                {\n                                    \"_index\": \"employee-parent-child25\",\n                                    \"_id\": \"leave130\",\n                                    \"_score\": 1,\n                                    \"_routing\": \"emp12356\",\n                                    \"_source\": {\n                                        \"id\": \"leave130\",\n                                        \"empid\": \"emp12356\",\n                                        \"leave_type\": \"vacation\",\n                                        \"leave_start_date\": \"2025-01-22\",\n                                        \"leave_end_date\": \"2025-01-24\",\n                                        \"number_of_days\": 3,\n                                        \"leave_status\": \"pending\",\n                                        \"tablename\": \"leaves\",\n                                        \"emp-join-field\": {\n                                            \"name\": \"leaves\",\n                                            \"parent\": \"emp12356\"\n                                        }\n                                    }\n                                }\n                            ]\n                        }\n                    }\n                }\n            },\n            {\n                \"_index\": \"employee-parent-child25\",\n                \"_id\": \"emp12358\",\n                \"_score\": 2,\n                \"_source\": {\n                    \"empid\": \"emp12358\",\n                    \"empname\": \"Lisa Harris\",\n                    \"role\": \"Admin#HR#Manager#Team Lead\",\n                    \"tablename\": \"employee\",\n                    \"emp-join-field\": {\n                        \"name\": \"employee\"\n                    }\n                },\n                \"inner_hits\": {\n                    \"august_leaves\": {\n                        \"hits\": {\n                            \"total\": {\n                                \"value\": 1,\n                                \"relation\": \"eq\"\n                            },\n                            \"max_score\": 1,\n                            \"hits\": [\n                                {\n                                    \"_index\": \"employee-parent-child25\",\n                                    \"_id\": \"leave196\",\n                                    \"_score\": 1,\n                                    \"_routing\": \"emp12358\",\n                                    \"_source\": {\n                                        \"id\": \"leave196\",\n                                        \"empid\": \"emp12358\",\n                                        \"leave_type\": \"vacation\",\n                                        \"leave_start_date\": \"2025-08-19\",\n                                        \"leave_end_date\": \"2025-08-22\",\n                                        \"number_of_days\": 4,\n                                        \"leave_status\": \"pending\",\n                                        \"tablename\": \"leaves\",\n                                        \"emp-join-field\": {\n                                            \"name\": \"leaves\",\n                                            \"parent\": \"emp12358\"\n                                        }\n                                    }\n                                }\n                            ]\n                        }\n                    },\n                    \"january_leaves\": {\n                        \"hits\": {\n                            \"total\": {\n                                \"value\": 1,\n                                \"relation\": \"eq\"\n                            },\n                            \"max_score\": 1,\n                            \"hits\": [\n                                {\n                                    \"_index\": \"employee-parent-child25\",\n                                    \"_id\": \"leave115\",\n                                    \"_score\": 1,\n                                    \"_routing\": \"emp12358\",\n                                    \"_source\": {\n                                        \"id\": \"leave115\",\n                                        \"empid\": \"emp12358\",\n                                        \"leave_type\": \"vacation\",\n                                        \"leave_start_date\": \"2025-01-17\",\n                                        \"leave_end_date\": \"2025-01-18\",\n                                        \"number_of_days\": 2,\n                                        \"leave_status\": \"denied\",\n                                        \"tablename\": \"leaves\",\n                                        \"emp-join-field\": {\n                                            \"name\": \"leaves\",\n                                            \"parent\": \"emp12358\"\n                                        }\n                                    }\n                                }\n                            ]\n                        }\n                    }\n                }\n            },\n            {\n                \"_index\": \"employee-parent-child25\",\n                \"_id\": \"emp12359\",\n                \"_score\": 2,\n                \"_source\": {\n                    \"empid\": \"emp12359\",\n                    \"empname\": \"Daniel Walker\",\n                    \"role\": \"Admin\",\n                    \"tablename\": \"employee\",\n                    \"emp-join-field\": {\n                        \"name\": \"employee\"\n                    }\n                },\n                \"inner_hits\": {\n                    \"august_leaves\": {\n                        \"hits\": {\n                            \"total\": {\n                                \"value\": 2,\n                                \"relation\": \"eq\"\n                            },\n                            \"max_score\": 1,\n                            \"hits\": [\n                                {\n                                    \"_index\": \"employee-parent-child25\",\n                                    \"_id\": \"leave044\",\n                                    \"_score\": 1,\n                                    \"_routing\": \"emp12359\",\n                                    \"_source\": {\n                                        \"id\": \"leave044\",\n                                        \"empid\": \"emp12359\",\n                                        \"leave_type\": \"vacation\",\n                                        \"leave_start_date\": \"2025-08-03\",\n                                        \"leave_end_date\": \"2025-08-06\",\n                                        \"number_of_days\": 4,\n                                        \"leave_status\": \"pending\",\n                                        \"tablename\": \"leaves\",\n                                        \"emp-join-field\": {\n                                            \"name\": \"leaves\",\n                                            \"parent\": \"emp12359\"\n                                        }\n                                    }\n                                },\n                                {\n                                    \"_index\": \"employee-parent-child25\",\n                                    \"_id\": \"leave088\",\n                                    \"_score\": 1,\n                                    \"_routing\": \"emp12359\",\n                                    \"_source\": {\n                                        \"id\": \"leave088\",\n                                        \"empid\": \"emp12359\",\n                                        \"leave_type\": \"vacation\",\n                                        \"leave_start_date\": \"2025-08-15\",\n                                        \"leave_end_date\": \"2025-08-17\",\n                                        \"number_of_days\": 3,\n                                        \"leave_status\": \"pending\",\n                                        \"tablename\": \"leaves\",\n                                        \"emp-join-field\": {\n                                            \"name\": \"leaves\",\n                                            \"parent\": \"emp12359\"\n                                        }\n                                    }\n                                }\n                            ]\n                        }\n                    },\n                    \"january_leaves\": {\n                        \"hits\": {\n                            \"total\": {\n                                \"value\": 1,\n                                \"relation\": \"eq\"\n                            },\n                            \"max_score\": 1,\n                            \"hits\": [\n                                {\n                                    \"_index\": \"employee-parent-child25\",\n                                    \"_id\": \"leave195\",\n                                    \"_score\": 1,\n                                    \"_routing\": \"emp12359\",\n                                    \"_source\": {\n                                        \"id\": \"leave195\",\n                                        \"empid\": \"emp12359\",\n                                        \"leave_type\": \"personal\",\n                                        \"leave_start_date\": \"2025-01-25\",\n                                        \"leave_end_date\": \"2025-01-29\",\n                                        \"number_of_days\": 5,\n                                        \"leave_status\": \"denied\",\n                                        \"tablename\": \"leaves\",\n                                        \"emp-join-field\": {\n                                            \"name\": \"leaves\",\n                                            \"parent\": \"emp12359\"\n                                        }\n                                    }\n                                }\n                            ]\n                        }\n                    }\n                }\n            }\n        ]\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "ingestByElasticClient",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "klsa",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":124,\r\n    \"name\":\"ingest\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/ingestByUsingRestAPI",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"ingestByUsingRestAPI"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "searchByRestApi",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "super",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "superuser",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"query\":{\r\n        \"bool\": {\r\n            \"must\": [\r\n                {\r\n                    \"has_child\": {\r\n                        \"type\": \"leaves\",\r\n                        \"query\": {\r\n                            \"range\": {\r\n                                \"leave_start_date\": {\r\n                                    \"gte\": \"2025-01-01\",\r\n                                    \"lte\": \"2025-01-31\"\r\n                                }\r\n                            }\r\n                        },\r\n                        \"inner_hits\": {\r\n                            \"name\": \"january_leaves\",\r\n                            \"size\": 10\r\n                        }\r\n                    }\r\n                },\r\n                {\r\n                    \"has_child\": {\r\n                        \"type\": \"leaves\",\r\n                        \"query\": {\r\n                            \"range\": {\r\n                                \"leave_start_date\": {\r\n                                    \"gte\": \"2025-08-01\",\r\n                                    \"lte\": \"2025-08-31\"\r\n                                }\r\n                            }\r\n                        },\r\n                        \"inner_hits\": {\r\n                            \"name\": \"august_leaves\",\r\n                            \"size\": 10\r\n                        }\r\n                    }\r\n                }\r\n            ]\r\n        }\r\n    }   \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/searchByUsingRestAPI",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"searchByUsingRestAPI"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request Copy",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

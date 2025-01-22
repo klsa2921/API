@@ -16,7 +16,7 @@ public class ElasticConfig {
     private String elasticsearchHost;
 
     @Value("${spring.elasticsearch.rest.port}")
-    private long elasticsearchPort;
+    private int elasticsearchPort;
 
 //    @Value("${spring.elasticsearch.rest.connection-timeout}")
 //    private String connectionTimeout;
@@ -41,7 +41,8 @@ public class ElasticConfig {
     public RestHighLevelClient restHighLevelClient() {
         return new RestHighLevelClient(
                 RestClient.builder(
-                        new HttpHost("localhost", 9200, "http") // Adjust the host and port as needed
+//                        new HttpHost("localhost", 9200, "http") // Adjust the host and port as needed
+                        new HttpHost(elasticsearchHost, elasticsearchPort, "http") // Adjust the host and port as needed
                 )
         );
     }

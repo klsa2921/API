@@ -1,0 +1,158 @@
+{
+	"info": {
+		"_postman_id": "085368ce-6b1a-49c4-b34b-7b4aedae076a",
+		"name": "ElasticApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19631002"
+	},
+	"item": [
+		{
+			"name": "searchByElasticClient",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "klsa",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n        \"bool\": {\r\n            \"must\": [\r\n                {\r\n                    \"has_child\": {\r\n                        \"type\": \"leaves\",\r\n                        \"query\": {\r\n                            \"range\": {\r\n                                \"leave_start_date\": {\r\n                                    \"gte\": \"2025-01-01\",\r\n                                    \"lte\": \"2025-01-31\"\r\n                                }\r\n                            }\r\n                        },\r\n                        \"inner_hits\": {\r\n                            \"name\": \"january_leaves\",\r\n                            \"size\": 10\r\n                        }\r\n                    }\r\n                },\r\n                {\r\n                    \"has_child\": {\r\n                        \"type\": \"leaves\",\r\n                        \"query\": {\r\n                            \"range\": {\r\n                                \"leave_start_date\": {\r\n                                    \"gte\": \"2025-08-01\",\r\n                                    \"lte\": \"2025-08-31\"\r\n                                }\r\n                            }\r\n                        },\r\n                        \"inner_hits\": {\r\n                            \"name\": \"august_leaves\",\r\n                            \"size\": 10\r\n                        }\r\n                    }\r\n                }\r\n            ]\r\n        }\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/searchByUsingClient",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"searchByUsingClient"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ingestByElasticClient",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "klsa",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":124,\r\n    \"name\":\"te6\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/ingestByUsingRestAPI",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"ingestByUsingRestAPI"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "searchByRestApi",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "super",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "superuser",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"query\":{\r\n        \"bool\": {\r\n            \"must\": [\r\n                {\r\n                    \"has_child\": {\r\n                        \"type\": \"leaves\",\r\n                        \"query\": {\r\n                            \"range\": {\r\n                                \"leave_start_date\": {\r\n                                    \"gte\": \"2025-01-01\",\r\n                                    \"lte\": \"2025-01-31\"\r\n                                }\r\n                            }\r\n                        },\r\n                        \"inner_hits\": {\r\n                            \"name\": \"january_leaves\",\r\n                            \"size\": 10\r\n                        }\r\n                    }\r\n                },\r\n                {\r\n                    \"has_child\": {\r\n                        \"type\": \"leaves\",\r\n                        \"query\": {\r\n                            \"range\": {\r\n                                \"leave_start_date\": {\r\n                                    \"gte\": \"2025-08-01\",\r\n                                    \"lte\": \"2025-08-31\"\r\n                                }\r\n                            }\r\n                        },\r\n                        \"inner_hits\": {\r\n                            \"name\": \"august_leaves\",\r\n                            \"size\": 10\r\n                        }\r\n                    }\r\n                }\r\n            ]\r\n        }\r\n    }   \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/searchByUsingRestAPI",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"searchByUsingRestAPI"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request Copy",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

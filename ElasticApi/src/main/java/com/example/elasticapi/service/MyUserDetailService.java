@@ -1,14 +1,19 @@
 package com.example.elasticapi.service;
 
 import com.example.elasticapi.model.MyUserDetails;
+import com.example.elasticapi.model.Roles;
 import com.example.elasticapi.model.User;
 
+import org.springframework.context.support.BeanDefinitionDsl;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.sql.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MyUserDetailService implements UserDetailsService {
@@ -24,7 +29,7 @@ public class MyUserDetailService implements UserDetailsService {
 
 
     public User getUserByUsername(String username) {
-        String sql = "SELECT id, username, password FROM users WHERE username = ?";
+        String sql = "SELECT id, username, password ,role FROM users WHERE username = ?";
         User user = null;
 
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:src/main/resources/db/user.db");
@@ -37,7 +42,13 @@ public class MyUserDetailService implements UserDetailsService {
                     int id = resultSet.getInt("id");
                     String dbUsername = resultSet.getString("username");
                     String password = resultSet.getString("password");
-                    user = new User(id, dbUsername, password);
+                    String rolesString=resultSet.getString("role");
+                    List<Roles> roles = Arrays.stream(rolesString.split(","))
+                            .map(String::trim) // Trim whitespace if needed
+                            .map(Roles::valueOf) // Convert each string to the Role enum
+                            .collect(Collectors.toList());
+                    user = new User(id, dbUsername, password,roles);
+                    System.out.println(user);
                 }
             }
 

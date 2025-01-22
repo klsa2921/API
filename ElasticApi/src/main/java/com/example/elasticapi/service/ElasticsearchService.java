@@ -1,5 +1,8 @@
 package com.example.elasticapi.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.elasticsearch.index.query.WrapperQueryBuilder;
+import org.elasticsearch.xcontent.XContentType;
 import org.springframework.stereotype.Service;
 import org.apache.http.entity.ContentType;
 import org.elasticsearch.client.Request;
@@ -23,8 +26,10 @@ import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.action.index.IndexResponse;
+
+
 @Service
 public class ElasticsearchService {
     @Autowired
@@ -48,7 +53,7 @@ public class ElasticsearchService {
         return new String(response.getEntity().getContent().readAllBytes());
     }
 
-    public String search2(String query){
+    public String searchWithRestAPI(String query){
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<String> request = new HttpEntity<>(query, headers);
@@ -61,30 +66,39 @@ public class ElasticsearchService {
     }
 
     private final RestHighLevelClient client;
-
-    public ElasticsearchService(RestHighLevelClient client) {
+    private final ObjectMapper objectMapper;
+    public ElasticsearchService(RestHighLevelClient client, ObjectMapper objectMapper) {
         this.client = client;
+        this.objectMapper=objectMapper;
     }
 
-    public String search3(String query) throws IOException {
+    public String searchWithElasticSearchClient(String query) throws IOException {
         try {
             boolean isConnected = client.ping(RequestOptions.DEFAULT);
             System.out.println("Elasticsearch connected: " + isConnected);
             SearchRequest searchRequest = new SearchRequest("employee-parent-child25");
             SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-//            searchSourceBuilder.query(QueryBuilders.matchQuery("fieldName", query));
 
-            searchSourceBuilder.query(QueryBuilders.queryStringQuery(query));
+            WrapperQueryBuilder wrapperQuery = QueryBuilders.wrapperQuery(query);
+            searchSourceBuilder.query(wrapperQuery);
             searchRequest.source(searchSourceBuilder);
 
             SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
 
             return searchResponse.toString();
         }catch (Exception e){
-            System.err.println("Elasticsearch error: " + e.getStackTrace());
+            System.err.println("Elasticsearch error: " + e.getStackTrace().toString());
             System.err.println("Details: " + e.getMessage());
             return e.getMessage().toString();
         }
 
     }
+
+    public IndexResponse  indexUsingElasticSearchClient(String data) throws IOException {
+        IndexRequest request = new IndexRequest("test")
+                .id("AgfGjJQBB8VZaMJkGUtx")
+                .source(data, XContentType.JSON);
+        return client.index(request, RequestOptions.DEFAULT);
+    }
+
 }
