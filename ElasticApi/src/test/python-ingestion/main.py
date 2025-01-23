@@ -226,13 +226,20 @@ parent_child_index = 'employee-parent-child26'
 
 try:
     employees, family_members, addresses, salarys, joiningDate, leave_records = load_csv_files()
-    response = helpers.bulk(es, generate_bulk_data_for_parent_child(employees, family_members, addresses,salarys,joiningDate,leave_records,parent_child_index))
-    print("Data indexed successfully!")
-    print(f"Indexed {response[0]} documents successfully.")
-    if response[1]:
-        print(f"Failed to index {len(response[1])} documents.")
-        for error in response[1]:
-            print(error)
+    data=generate_bulk_data_for_parent_child(employees, family_members, addresses,salarys,joiningDate,leave_records,parent_child_index)
+    
+    with open('ingest/ingest.json', 'w') as f:
+        for item in data:
+            f.write("%s\n" % item)
+
+    # response = helpers.bulk(es, data)
+    # print("Data indexed successfully!")
+    # print(f"Indexed {response[0]} documents successfully.")
+    # if response[1]:
+    #     print(f"Failed to index {len(response[1])} documents.")
+    #     for error in response[1]:
+    #         print(error)
+
 except Exception as e:
     print(f"Error indexing data: {e}")
 

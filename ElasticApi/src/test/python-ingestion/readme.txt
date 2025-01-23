@@ -102,7 +102,7 @@ To test the below endpoints use the queries provided:
             ]
         }
     }
-    
+
 4.For /api/searchWithFilterByUsingRestAPI
     {
         "query":{

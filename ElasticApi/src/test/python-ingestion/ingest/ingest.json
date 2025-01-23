@@ -1,0 +1,816 @@
+//create Mapping for Parent-Child Relationship
+PUT employee-parent-child27
+{
+    "mappings": {
+        "properties": {
+            "empid": {"type": "keyword"},
+            "empname": {"type": "text"},
+            "emp-join-field": {
+                "type": "join",
+                "relations": {
+                    "employee": ["address", "family","salary","joiningDate","leaves"]
+                }
+            }
+        }
+    }
+}
+
+
+// Ingest data into Elasticsearch using Bulk API with Parent-Child Relationship and Routing
+POST _bulk
+{"index": {"_index": "employee-parent-child27", "_id": "emp12345"}}
+{"empid": "emp12345", "empname": "John Doe", "role": "Admin", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12346"}}
+{"empid": "emp12346", "empname": "Jane Smith", "role": "Admin#HR", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12347"}}
+{"empid": "emp12347", "empname": "James Brown", "role": "Admin#HR#Manager", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12348"}}
+{"empid": "emp12348", "empname": "Emily Davis", "role": "Super Admin", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12349"}}
+{"empid": "emp12349", "empname": "Michael Wilson", "role": "Admin#HR#Manager#Team Lead", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12350"}}
+{"empid": "emp12350", "empname": "Olivia Taylor", "role": "Admin#HR", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12351"}}
+{"empid": "emp12351", "empname": "William Anderson", "role": "Admin#HR#Manager", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12352"}}
+{"empid": "emp12352", "empname": "Isabella Thomas", "role": "Super Admin", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12353"}}
+{"empid": "emp12353", "empname": "Matthew Jackson", "role": "Admin#HR#Manager#Team Lead", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12354"}}
+{"empid": "emp12354", "empname": "Sophia White", "role": "Admin", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12355"}}
+{"empid": "emp12355", "empname": "David Harris", "role": "Admin#HR", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12356"}}
+{"empid": "emp12356", "empname": "Anna Lee", "role": "Admin#HR#Manager", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12357"}}
+{"empid": "emp12357", "empname": "Robert Clark", "role": "Super Admin", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12358"}}
+{"empid": "emp12358", "empname": "Lisa Harris", "role": "Admin#HR#Manager#Team Lead", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12359"}}
+{"empid": "emp12359", "empname": "Daniel Walker", "role": "Admin", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12360"}}
+{"empid": "emp12360", "empname": "Jessica Young", "role": "Admin#HR", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12361"}}
+{"empid": "emp12361", "empname": "Christopher King", "role": "Admin#HR#Manager", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12362"}}
+{"empid": "emp12362", "empname": "Charlotte Scott", "role": "Super Admin", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12363"}}
+{"empid": "emp12363", "empname": "Matthew Allen", "role": "Admin#HR#Manager#Team Lead", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12364"}}
+{"empid": "emp12364", "empname": "Katherine White", "role": "Admin", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12365"}}
+{"empid": "emp12365", "empname": "Daniel Wright", "role": "Admin#HR", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12366"}}
+{"empid": "emp12366", "empname": "James Turner", "role": "Admin#HR#Manager", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12367"}}
+{"empid": "emp12367", "empname": "Elizabeth Lee", "role": "Super Admin", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12368"}}
+{"empid": "emp12368", "empname": "Joshua Moore", "role": "Admin#HR#Manager#Team Lead", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12369"}}
+{"empid": "emp12369", "empname": "Nicole Martinez", "role": "Admin", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12370"}}
+{"empid": "emp12370", "empname": "Samuel Garcia", "role": "Admin#HR", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12371"}}
+{"empid": "emp12371", "empname": "Anna Robinson", "role": "Admin#HR#Manager", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12372"}}
+{"empid": "emp12372", "empname": "Michael Nelson", "role": "Super Admin", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12373"}}
+{"empid": "emp12373", "empname": "Karen Perez", "role": "Admin#HR#Manager#Team Lead", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "emp12374"}}
+{"empid": "emp12374", "empname": "Robert Brown", "role": "Admin", "tablename": "employee", "emp-join-field": {"name": "employee"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam001", "_routing": "emp12345"}}
+{"empid": "emp12345", "relation": "Father", "name": "Robert Doe", "age": "55", "occupation": "Engineer", "contact": "123-456-7890", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12345"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam002", "_routing": "emp12345"}}
+{"empid": "emp12345", "relation": "Mother", "name": "Jane Doe", "age": "50", "occupation": "Teacher", "contact": "123-456-7891", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12345"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam003", "_routing": "emp12346"}}
+{"empid": "emp12346", "relation": "Father", "name": "Mark Smith", "age": "58", "occupation": "Doctor", "contact": "987-654-3210", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12346"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam004", "_routing": "emp12346"}}
+{"empid": "emp12346", "relation": "Mother", "name": "Lisa Smith", "age": "52", "occupation": "Nurse", "contact": "987-654-3211", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12346"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam005", "_routing": "emp12347"}}
+{"empid": "emp12347", "relation": "Father", "name": "Richard Brown", "age": "60", "occupation": "Architect", "contact": "555-555-5555", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12347"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam006", "_routing": "emp12347"}}
+{"empid": "emp12347", "relation": "Mother", "name": "Patricia Brown", "age": "57", "occupation": "Designer", "contact": "555-555-5556", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12347"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam007", "_routing": "emp12347"}}
+{"empid": "emp12347", "relation": "Sister", "name": "Emily Brown", "age": "30", "occupation": "Teacher", "contact": "555-555-5557", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12347"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam008", "_routing": "emp12348"}}
+{"empid": "emp12348", "relation": "Husband", "name": "Michael Davis", "age": "30", "occupation": "Software Developer", "contact": "333-333-3333", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12348"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam009", "_routing": "emp12348"}}
+{"empid": "emp12348", "relation": "Wife", "name": "Anna Davis", "age": "28", "occupation": "Graphic Designer", "contact": "333-333-3334", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12348"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam010", "_routing": "emp12349"}}
+{"empid": "emp12349", "relation": "Wife", "name": "Emma Wilson", "age": "28", "occupation": "Graphic Designer", "contact": "444-444-4444", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12349"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam011", "_routing": "emp12349"}}
+{"empid": "emp12349", "relation": "Father", "name": "David Wilson", "age": "60", "occupation": "Retired", "contact": "444-444-4445", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12349"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam012", "_routing": "emp12350"}}
+{"empid": "emp12350", "relation": "Father", "name": "William Taylor", "age": "65", "occupation": "Professor", "contact": "222-222-2222", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12350"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam013", "_routing": "emp12350"}}
+{"empid": "emp12350", "relation": "Mother", "name": "Susan Taylor", "age": "63", "occupation": "Artist", "contact": "222-222-2223", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12350"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam014", "_routing": "emp12351"}}
+{"empid": "emp12351", "relation": "Father", "name": "James Anderson", "age": "58", "occupation": "Construction Worker", "contact": "555-555-5557", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12351"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam015", "_routing": "emp12351"}}
+{"empid": "emp12351", "relation": "Mother", "name": "Marie Anderson", "age": "55", "occupation": "Chef", "contact": "555-555-5558", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12351"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam016", "_routing": "emp12351"}}
+{"empid": "emp12351", "relation": "Sister", "name": "Olivia Anderson", "age": "30", "occupation": "Doctor", "contact": "555-555-5559", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12351"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam017", "_routing": "emp12352"}}
+{"empid": "emp12352", "relation": "Father", "name": "Thomas Thomas", "age": "60", "occupation": "Engineer", "contact": "111-111-1111", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12352"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam018", "_routing": "emp12352"}}
+{"empid": "emp12352", "relation": "Mother", "name": "Amy Thomas", "age": "58", "occupation": "Doctor", "contact": "111-111-1112", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12352"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam019", "_routing": "emp12352"}}
+{"empid": "emp12352", "relation": "Brother", "name": "Chris Thomas", "age": "32", "occupation": "Designer", "contact": "111-111-1113", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12352"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam020", "_routing": "emp12353"}}
+{"empid": "emp12353", "relation": "Wife", "name": "Olivia Jackson", "age": "27", "occupation": "Teacher", "contact": "666-666-6666", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12353"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam021", "_routing": "emp12353"}}
+{"empid": "emp12353", "relation": "Father", "name": "David Jackson", "age": "63", "occupation": "Carpenter", "contact": "666-666-6667", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12353"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam022", "_routing": "emp12353"}}
+{"empid": "emp12353", "relation": "Mother", "name": "Laura Jackson", "age": "60", "occupation": "Artist", "contact": "666-666-6668", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12353"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam023", "_routing": "emp12354"}}
+{"empid": "emp12354", "relation": "Husband", "name": "Christopher White", "age": "33", "occupation": "Marketing Specialist", "contact": "777-777-7777", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12354"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam024", "_routing": "emp12354"}}
+{"empid": "emp12354", "relation": "Wife", "name": "Sophia White", "age": "30", "occupation": "Graphic Designer", "contact": "777-777-7778", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12354"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam025", "_routing": "emp12354"}}
+{"empid": "emp12354", "relation": "Father", "name": "George White", "age": "65", "occupation": "Retired", "contact": "777-777-7779", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12354"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam026", "_routing": "emp12355"}}
+{"empid": "emp12355", "relation": "Father", "name": "George Harris", "age": "62", "occupation": "Doctor", "contact": "888-888-8888", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12355"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam027", "_routing": "emp12355"}}
+{"empid": "emp12355", "relation": "Mother", "name": "Emma Harris", "age": "58", "occupation": "Lawyer", "contact": "888-888-8889", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12355"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam028", "_routing": "emp12355"}}
+{"empid": "emp12355", "relation": "Sister", "name": "Lily Harris", "age": "29", "occupation": "Consultant", "contact": "888-888-8890", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12355"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam029", "_routing": "emp12356"}}
+{"empid": "emp12356", "relation": "Father", "name": "James Lee", "age": "59", "occupation": "Chef", "contact": "999-999-9999", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12356"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam030", "_routing": "emp12356"}}
+{"empid": "emp12356", "relation": "Mother", "name": "Susan Lee", "age": "55", "occupation": "Artist", "contact": "999-999-9990", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12356"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam031", "_routing": "emp12357"}}
+{"empid": "emp12357", "relation": "Father", "name": "Mark Clark", "age": "64", "occupation": "Retired", "contact": "555-777-8889", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12357"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam032", "_routing": "emp12357"}}
+{"empid": "emp12357", "relation": "Mother", "name": "Patricia Clark", "age": "60", "occupation": "Scientist", "contact": "555-777-8880", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12357"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam033", "_routing": "emp12357"}}
+{"empid": "emp12357", "relation": "Sister", "name": "Rebecca Clark", "age": "34", "occupation": "Teacher", "contact": "555-777-8881", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12357"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam034", "_routing": "emp12358"}}
+{"empid": "emp12358", "relation": "Father", "name": "Robert Harris", "age": "66", "occupation": "Engineer", "contact": "777-555-3333", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12358"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam035", "_routing": "emp12358"}}
+{"empid": "emp12358", "relation": "Mother", "name": "Julia Harris", "age": "62", "occupation": "Teacher", "contact": "777-555-3334", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12358"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam036", "_routing": "emp12358"}}
+{"empid": "emp12358", "relation": "Brother", "name": "Lucas Harris", "age": "33", "occupation": "Software Developer", "contact": "777-555-3335", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12358"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam037", "_routing": "emp12359"}}
+{"empid": "emp12359", "relation": "Father", "name": "John Walker", "age": "67", "occupation": "Architect", "contact": "444-222-8889", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12359"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam038", "_routing": "emp12359"}}
+{"empid": "emp12359", "relation": "Mother", "name": "Jessica Walker", "age": "63", "occupation": "Writer", "contact": "444-222-8888", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12359"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam039", "_routing": "emp12359"}}
+{"empid": "emp12359", "relation": "Sister", "name": "Emily Walker", "age": "30", "occupation": "Photographer", "contact": "444-222-8887", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12359"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam040", "_routing": "emp12360"}}
+{"empid": "emp12360", "relation": "Father", "name": "Samuel Young", "age": "61", "occupation": "Mechanic", "contact": "555-666-4445", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12360"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam041", "_routing": "emp12360"}}
+{"empid": "emp12360", "relation": "Mother", "name": "Anna Young", "age": "59", "occupation": "Doctor", "contact": "555-666-4446", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12360"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam042", "_routing": "emp12360"}}
+{"empid": "emp12360", "relation": "Brother", "name": "Ethan Young", "age": "25", "occupation": "Teacher", "contact": "555-666-4447", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12360"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam043", "_routing": "emp12361"}}
+{"empid": "emp12361", "relation": "Father", "name": "John King", "age": "65", "occupation": "Consultant", "contact": "777-888-9999", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12361"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam044", "_routing": "emp12361"}}
+{"empid": "emp12361", "relation": "Mother", "name": "Emily King", "age": "60", "occupation": "Teacher", "contact": "777-888-9990", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12361"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam045", "_routing": "emp12361"}}
+{"empid": "emp12361", "relation": "Brother", "name": "Michael King", "age": "32", "occupation": "Artist", "contact": "777-888-9991", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12361"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam046", "_routing": "emp12362"}}
+{"empid": "emp12362", "relation": "Father", "name": "Robert Scott", "age": "62", "occupation": "Doctor", "contact": "444-333-2222", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12362"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam047", "_routing": "emp12362"}}
+{"empid": "emp12362", "relation": "Mother", "name": "Linda Scott", "age": "58", "occupation": "Engineer", "contact": "444-333-2223", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12362"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam048", "_routing": "emp12362"}}
+{"empid": "emp12362", "relation": "Sister", "name": "Carol Scott", "age": "33", "occupation": "Photographer", "contact": "444-333-2224", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12362"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam049", "_routing": "emp12363"}}
+{"empid": "emp12363", "relation": "Father", "name": "Charles Green", "age": "60", "occupation": "Architect", "contact": "111-222-3333", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12363"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam050", "_routing": "emp12363"}}
+{"empid": "emp12363", "relation": "Mother", "name": "Grace Green", "age": "58", "occupation": "Scientist", "contact": "111-222-3334", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12363"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam051", "_routing": "emp12363"}}
+{"empid": "emp12363", "relation": "Sister", "name": "Lily Green", "age": "30", "occupation": "Designer", "contact": "111-222-3335", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12363"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam052", "_routing": "emp12364"}}
+{"empid": "emp12364", "relation": "Father", "name": "Paul Blue", "age": "64", "occupation": "Engineer", "contact": "777-666-5555", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12364"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam053", "_routing": "emp12364"}}
+{"empid": "emp12364", "relation": "Mother", "name": "Linda Blue", "age": "60", "occupation": "Teacher", "contact": "777-666-5556", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12364"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam054", "_routing": "emp12364"}}
+{"empid": "emp12364", "relation": "Sister", "name": "Olivia Blue", "age": "32", "occupation": "Chef", "contact": "777-666-5557", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12364"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam055", "_routing": "emp12365"}}
+{"empid": "emp12365", "relation": "Father", "name": "Steven Brown", "age": "63", "occupation": "Doctor", "contact": "444-777-5555", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12365"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam056", "_routing": "emp12365"}}
+{"empid": "emp12365", "relation": "Mother", "name": "Monica Brown", "age": "60", "occupation": "Artist", "contact": "444-777-5556", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12365"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam057", "_routing": "emp12365"}}
+{"empid": "emp12365", "relation": "Sister", "name": "Rachel Brown", "age": "29", "occupation": "Consultant", "contact": "444-777-5557", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12365"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam058", "_routing": "emp12366"}}
+{"empid": "emp12366", "relation": "Father", "name": "David White", "age": "65", "occupation": "Consultant", "contact": "333-444-5555", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12366"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam059", "_routing": "emp12366"}}
+{"empid": "emp12366", "relation": "Mother", "name": "Eliza White", "age": "63", "occupation": "Writer", "contact": "333-444-5556", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12366"}}
+{"index": {"_index": "employee-parent-child27", "_id": "fam060", "_routing": "emp12366"}}
+{"empid": "emp12366", "relation": "Sister", "name": "Jessica White", "age": "28", "occupation": "Engineer", "contact": "333-444-5557", "tablename": "family", "emp-join-field": {"name": "family", "parent": "emp12366"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr001", "_routing": "emp12345"}}
+{"empid": "emp12345", "street": "123 Oak St", "city": "Springfield", "state": "Illinois", "zipcode": "62701", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12345"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr002", "_routing": "emp12345"}}
+{"empid": "emp12345", "street": "456 Maple Ave", "city": "Springfield", "state": "Illinois", "zipcode": "62702", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12345"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr003", "_routing": "emp12346"}}
+{"empid": "emp12346", "street": "456 Pine St", "city": "Greenwich", "state": "Connecticut", "zipcode": "06830", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12346"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr004", "_routing": "emp12346"}}
+{"empid": "emp12346", "street": "789 Birch Rd", "city": "Greenwich", "state": "Connecticut", "zipcode": "06831", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12346"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr005", "_routing": "emp12347"}}
+{"empid": "emp12347", "street": "789 Maple Ave", "city": "Lakewood", "state": "Ohio", "zipcode": "44107", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12347"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr006", "_routing": "emp12347"}}
+{"empid": "emp12347", "street": "234 Oak St", "city": "Lakewood", "state": "Ohio", "zipcode": "44108", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12347"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr007", "_routing": "emp12348"}}
+{"empid": "emp12348", "street": "321 Birch Rd", "city": "Clinton", "state": "New Jersey", "zipcode": "07068", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12348"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr008", "_routing": "emp12349"}}
+{"empid": "emp12349", "street": "654 Cedar Ln", "city": "Newark", "state": "New Jersey", "zipcode": "07102", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12349"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr009", "_routing": "emp12349"}}
+{"empid": "emp12349", "street": "321 Oak St", "city": "Newark", "state": "New Jersey", "zipcode": "07103", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12349"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr010", "_routing": "emp12350"}}
+{"empid": "emp12350", "street": "987 Elm St", "city": "Montclair", "state": "New Jersey", "zipcode": "07042", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12350"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr011", "_routing": "emp12350"}}
+{"empid": "emp12350", "street": "123 Maple Ave", "city": "Montclair", "state": "New Jersey", "zipcode": "07043", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12350"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr012", "_routing": "emp12351"}}
+{"empid": "emp12351", "street": "234 Walnut St", "city": "Westfield", "state": "New Jersey", "zipcode": "07090", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12351"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr013", "_routing": "emp12351"}}
+{"empid": "emp12351", "street": "567 Pine St", "city": "Westfield", "state": "New Jersey", "zipcode": "07091", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12351"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr014", "_routing": "emp12352"}}
+{"empid": "emp12352", "street": "135 Redwood Dr", "city": "Union", "state": "New Jersey", "zipcode": "07083", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12352"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr015", "_routing": "emp12352"}}
+{"empid": "emp12352", "street": "890 Birch Rd", "city": "Union", "state": "New Jersey", "zipcode": "07084", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12352"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr016", "_routing": "emp12353"}}
+{"empid": "emp12353", "street": "765 Pinecrest Blvd", "city": "Elizabeth", "state": "New Jersey", "zipcode": "07201", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12353"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr017", "_routing": "emp12353"}}
+{"empid": "emp12353", "street": "123 Oak Ave", "city": "Elizabeth", "state": "New Jersey", "zipcode": "07202", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12353"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr018", "_routing": "emp12354"}}
+{"empid": "emp12354", "street": "890 Willow Way", "city": "Paterson", "state": "New Jersey", "zipcode": "07501", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12354"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr019", "_routing": "emp12354"}}
+{"empid": "emp12354", "street": "456 Oak St", "city": "Paterson", "state": "New Jersey", "zipcode": "07502", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12354"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr020", "_routing": "emp12355"}}
+{"empid": "emp12355", "street": "567 Cedar St", "city": "Fairfield", "state": "Connecticut", "zipcode": "06824", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12355"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr021", "_routing": "emp12356"}}
+{"empid": "emp12356", "street": "123 Maple Dr", "city": "Columbus", "state": "Ohio", "zipcode": "43210", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12356"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr022", "_routing": "emp12357"}}
+{"empid": "emp12357", "street": "987 Birch Rd", "city": "Trenton", "state": "New Jersey", "zipcode": "08618", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12357"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr023", "_routing": "emp12358"}}
+{"empid": "emp12358", "street": "123 Oak Blvd", "city": "New York", "state": "New York", "zipcode": "10001", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12358"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr024", "_routing": "emp12359"}}
+{"empid": "emp12359", "street": "456 Pinecrest Dr", "city": "Boston", "state": "Massachusetts", "zipcode": "02115", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12359"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr025", "_routing": "emp12360"}}
+{"empid": "emp12360", "street": "234 Elm Rd", "city": "Chicago", "state": "Illinois", "zipcode": "60611", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12360"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr026", "_routing": "emp12361"}}
+{"empid": "emp12361", "street": "765 Maple Ln", "city": "New Haven", "state": "Connecticut", "zipcode": "06511", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12361"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr027", "_routing": "emp12362"}}
+{"empid": "emp12362", "street": "321 Walnut Ave", "city": "Philadelphia", "state": "Pennsylvania", "zipcode": "19102", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12362"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr028", "_routing": "emp12363"}}
+{"empid": "emp12363", "street": "654 Birch Dr", "city": "Detroit", "state": "Michigan", "zipcode": "48202", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12363"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr029", "_routing": "emp12364"}}
+{"empid": "emp12364", "street": "890 Pine St", "city": "Atlanta", "state": "Georgia", "zipcode": "30303", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12364"}}
+{"index": {"_index": "employee-parent-child27", "_id": "addr030", "_routing": "emp12365"}}
+{"empid": "emp12365", "street": "123 Cedar Ave", "city": "Baltimore", "state": "Maryland", "zipcode": "21201", "country": "USA", "tablename": "address", "emp-join-field": {"name": "address", "parent": "emp12365"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal1", "_routing": "emp12345"}}
+{"id": "sal1", "empid": "emp12345", "salary": 50000, "role": "Admin", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12345"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal2", "_routing": "emp12346"}}
+{"id": "sal2", "empid": "emp12346", "salary": 60000, "role": "Admin#HR", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12346"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal3", "_routing": "emp12347"}}
+{"id": "sal3", "empid": "emp12347", "salary": 70000, "role": "Admin#HR#Manager", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12347"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal4", "_routing": "emp12348"}}
+{"id": "sal4", "empid": "emp12348", "salary": 80000, "role": "Super Admin", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12348"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal5", "_routing": "emp12350"}}
+{"id": "sal5", "empid": "emp12350", "salary": 55000, "role": "Admin#HR", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12350"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal6", "_routing": "emp12349"}}
+{"id": "sal6", "empid": "emp12349", "salary": 75000, "role": "Admin#HR#Manager", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12349"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal7", "_routing": "emp12353"}}
+{"id": "sal7", "empid": "emp12353", "salary": 72000, "role": "Admin#HR#Manager", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12353"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal8", "_routing": "emp12351"}}
+{"id": "sal8", "empid": "emp12351", "salary": 68000, "role": "Admin#HR#Manager", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12351"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal9", "_routing": "emp12354"}}
+{"id": "sal9", "empid": "emp12354", "salary": 50000, "role": "Admin", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12354"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal10", "_routing": "emp12352"}}
+{"id": "sal10", "empid": "emp12352", "salary": 85000, "role": "Super Admin", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12352"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal11", "_routing": "emp12355"}}
+{"id": "sal11", "empid": "emp12355", "salary": 60000, "role": "Admin#HR", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12355"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal12", "_routing": "emp12356"}}
+{"id": "sal12", "empid": "emp12356", "salary": 70000, "role": "Admin#HR#Manager", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12356"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal13", "_routing": "emp12357"}}
+{"id": "sal13", "empid": "emp12357", "salary": 80000, "role": "Super Admin", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12357"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal14", "_routing": "emp12358"}}
+{"id": "sal14", "empid": "emp12358", "salary": 75000, "role": "Admin#HR#Manager", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12358"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal15", "_routing": "emp12359"}}
+{"id": "sal15", "empid": "emp12359", "salary": 50000, "role": "Admin", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12359"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal16", "_routing": "emp12360"}}
+{"id": "sal16", "empid": "emp12360", "salary": 125000, "role": "Admin#HR", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12360"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal17", "_routing": "emp12361"}}
+{"id": "sal17", "empid": "emp12361", "salary": 135000, "role": "Admin#HR#Manager", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12361"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal18", "_routing": "emp12362"}}
+{"id": "sal18", "empid": "emp12362", "salary": 145000, "role": "Super Admin", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12362"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal19", "_routing": "emp12363"}}
+{"id": "sal19", "empid": "emp12363", "salary": 155000, "role": "Admin#HR#Manager", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12363"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal20", "_routing": "emp12364"}}
+{"id": "sal20", "empid": "emp12364", "salary": 160000, "role": "Admin", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12364"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal21", "_routing": "emp12365"}}
+{"id": "sal21", "empid": "emp12365", "salary": 170000, "role": "Admin#HR", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12365"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal22", "_routing": "emp12366"}}
+{"id": "sal22", "empid": "emp12366", "salary": 175000, "role": "Admin#HR#Manager", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12366"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal23", "_routing": "emp12367"}}
+{"id": "sal23", "empid": "emp12367", "salary": 180000, "role": "Super Admin", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12367"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal24", "_routing": "emp12368"}}
+{"id": "sal24", "empid": "emp12368", "salary": 190000, "role": "Admin#HR#Manager", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12368"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal25", "_routing": "emp12369"}}
+{"id": "sal25", "empid": "emp12369", "salary": 195000, "role": "Admin", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12369"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal26", "_routing": "emp12370"}}
+{"id": "sal26", "empid": "emp12370", "salary": 200000, "role": "Admin#HR", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12370"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal27", "_routing": "emp12371"}}
+{"id": "sal27", "empid": "emp12371", "salary": 210000, "role": "Admin#HR#Manager", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12371"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal28", "_routing": "emp12372"}}
+{"id": "sal28", "empid": "emp12372", "salary": 220000, "role": "Super Admin", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12372"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal29", "_routing": "emp12373"}}
+{"id": "sal29", "empid": "emp12373", "salary": 230000, "role": "Admin#HR#Manager", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12373"}}
+{"index": {"_index": "employee-parent-child27", "_id": "sal30", "_routing": "emp12374"}}
+{"id": "sal30", "empid": "emp12374", "salary": 240000, "role": "Admin", "tablename": "salary", "emp-join-field": {"name": "salary", "parent": "emp12374"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join1", "_routing": "emp12345"}}
+{"id": "join1", "empid": "emp12345", "joinDate": "2015-06-15", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12345"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join2", "_routing": "emp12346"}}
+{"id": "join2", "empid": "emp12346", "joinDate": "2016-04-20", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12346"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join3", "_routing": "emp12347"}}
+{"id": "join3", "empid": "emp12347", "joinDate": "2017-01-11", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12347"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join4", "_routing": "emp12348"}}
+{"id": "join4", "empid": "emp12348", "joinDate": "2018-09-03", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12348"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join6", "_routing": "emp12349"}}
+{"id": "join6", "empid": "emp12349", "joinDate": "2019-12-25", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12349"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join5", "_routing": "emp12350"}}
+{"id": "join5", "empid": "emp12350", "joinDate": "2020-07-14", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12350"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join8", "_routing": "emp12351"}}
+{"id": "join8", "empid": "emp12351", "joinDate": "2021-03-09", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12351"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join10", "_routing": "emp12352"}}
+{"id": "join10", "empid": "emp12352", "joinDate": "2022-11-17", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12352"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join7", "_routing": "emp12353"}}
+{"id": "join7", "empid": "emp12353", "joinDate": "2023-05-22", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12353"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join9", "_routing": "emp12354"}}
+{"id": "join9", "empid": "emp12354", "joinDate": "2024-08-30", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12354"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join11", "_routing": "emp12355"}}
+{"id": "join11", "empid": "emp12355", "joinDate": "2014-03-18", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12355"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join12", "_routing": "emp12356"}}
+{"id": "join12", "empid": "emp12356", "joinDate": "2015-02-14", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12356"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join13", "_routing": "emp12357"}}
+{"id": "join13", "empid": "emp12357", "joinDate": "2016-10-01", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12357"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join14", "_routing": "emp12358"}}
+{"id": "join14", "empid": "emp12358", "joinDate": "2017-06-22", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12358"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join15", "_routing": "emp12359"}}
+{"id": "join15", "empid": "emp12359", "joinDate": "2018-01-29", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12359"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join16", "_routing": "emp12360"}}
+{"id": "join16", "empid": "emp12360", "joinDate": "2019-04-11", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12360"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join17", "_routing": "emp12361"}}
+{"id": "join17", "empid": "emp12361", "joinDate": "2020-05-02", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12361"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join18", "_routing": "emp12362"}}
+{"id": "join18", "empid": "emp12362", "joinDate": "2021-11-25", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12362"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join19", "_routing": "emp12363"}}
+{"id": "join19", "empid": "emp12363", "joinDate": "2022-07-17", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12363"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join20", "_routing": "emp12364"}}
+{"id": "join20", "empid": "emp12364", "joinDate": "2023-03-28", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12364"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join21", "_routing": "emp12365"}}
+{"id": "join21", "empid": "emp12365", "joinDate": "2024-05-19", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12365"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join22", "_routing": "emp12366"}}
+{"id": "join22", "empid": "emp12366", "joinDate": "2022-02-06", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12366"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join23", "_routing": "emp12367"}}
+{"id": "join23", "empid": "emp12367", "joinDate": "2021-08-15", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12367"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join24", "_routing": "emp12368"}}
+{"id": "join24", "empid": "emp12368", "joinDate": "2020-11-08", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12368"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join25", "_routing": "emp12369"}}
+{"id": "join25", "empid": "emp12369", "joinDate": "2019-09-17", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12369"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join26", "_routing": "emp12370"}}
+{"id": "join26", "empid": "emp12370", "joinDate": "2018-04-23", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12370"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join27", "_routing": "emp12371"}}
+{"id": "join27", "empid": "emp12371", "joinDate": "2017-12-01", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12371"}}
+{"index": {"_index": "employee-parent-child27", "_id": "join28", "_routing": "emp12372"}}
+{"id": "join28", "empid": "emp12372", "joinDate": "2016-05-10", "tablename": "joinDate", "emp-join-field": {"name": "joiningDate", "parent": "emp12372"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave001", "_routing": "emp12345"}}
+{"id": "leave001", "empid": "emp12345", "leave_type": "sick", "leave_start_date": "2025-06-16", "leave_end_date": "2025-06-20", "number_of_days": 5, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12345"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave002", "_routing": "emp12358"}}
+{"id": "leave002", "empid": "emp12358", "leave_type": "sick", "leave_start_date": "2025-10-09", "leave_end_date": "2025-10-11", "number_of_days": 3, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12358"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave003", "_routing": "emp12359"}}
+{"id": "leave003", "empid": "emp12359", "leave_type": "vacation", "leave_start_date": "2025-02-04", "leave_end_date": "2025-02-06", "number_of_days": 3, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12359"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave004", "_routing": "emp12349"}}
+{"id": "leave004", "empid": "emp12349", "leave_type": "vacation", "leave_start_date": "2025-07-14", "leave_end_date": "2025-07-19", "number_of_days": 6, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12349"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave005", "_routing": "emp12371"}}
+{"id": "leave005", "empid": "emp12371", "leave_type": "sick", "leave_start_date": "2025-10-24", "leave_end_date": "2025-10-27", "number_of_days": 4, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12371"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave006", "_routing": "emp12366"}}
+{"id": "leave006", "empid": "emp12366", "leave_type": "sick", "leave_start_date": "2025-07-07", "leave_end_date": "2025-07-12", "number_of_days": 6, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12366"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave007", "_routing": "emp12360"}}
+{"id": "leave007", "empid": "emp12360", "leave_type": "vacation", "leave_start_date": "2025-05-22", "leave_end_date": "2025-05-26", "number_of_days": 5, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12360"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave008", "_routing": "emp12371"}}
+{"id": "leave008", "empid": "emp12371", "leave_type": "vacation", "leave_start_date": "2025-09-21", "leave_end_date": "2025-09-25", "number_of_days": 5, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12371"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave009", "_routing": "emp12370"}}
+{"id": "leave009", "empid": "emp12370", "leave_type": "personal", "leave_start_date": "2025-02-17", "leave_end_date": "2025-02-18", "number_of_days": 2, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12370"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave010", "_routing": "emp12354"}}
+{"id": "leave010", "empid": "emp12354", "leave_type": "vacation", "leave_start_date": "2025-11-18", "leave_end_date": "2025-11-19", "number_of_days": 2, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12354"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave011", "_routing": "emp12356"}}
+{"id": "leave011", "empid": "emp12356", "leave_type": "sick", "leave_start_date": "2025-06-11", "leave_end_date": "2025-06-12", "number_of_days": 2, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12356"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave012", "_routing": "emp12374"}}
+{"id": "leave012", "empid": "emp12374", "leave_type": "personal", "leave_start_date": "2025-11-09", "leave_end_date": "2025-11-11", "number_of_days": 3, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12374"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave013", "_routing": "emp12370"}}
+{"id": "leave013", "empid": "emp12370", "leave_type": "personal", "leave_start_date": "2025-01-23", "leave_end_date": "2025-01-24", "number_of_days": 2, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12370"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave014", "_routing": "emp12358"}}
+{"id": "leave014", "empid": "emp12358", "leave_type": "personal", "leave_start_date": "2025-04-24", "leave_end_date": "2025-04-28", "number_of_days": 5, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12358"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave015", "_routing": "emp12364"}}
+{"id": "leave015", "empid": "emp12364", "leave_type": "personal", "leave_start_date": "2025-06-20", "leave_end_date": "2025-06-24", "number_of_days": 5, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12364"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave016", "_routing": "emp12357"}}
+{"id": "leave016", "empid": "emp12357", "leave_type": "sick", "leave_start_date": "2025-03-22", "leave_end_date": "2025-03-23", "number_of_days": 2, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12357"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave017", "_routing": "emp12362"}}
+{"id": "leave017", "empid": "emp12362", "leave_type": "sick", "leave_start_date": "2025-12-15", "leave_end_date": "2025-12-17", "number_of_days": 3, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12362"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave018", "_routing": "emp12371"}}
+{"id": "leave018", "empid": "emp12371", "leave_type": "personal", "leave_start_date": "2025-02-27", "leave_end_date": "2025-02-28", "number_of_days": 2, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12371"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave019", "_routing": "emp12353"}}
+{"id": "leave019", "empid": "emp12353", "leave_type": "personal", "leave_start_date": "2025-07-13", "leave_end_date": "2025-07-15", "number_of_days": 3, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12353"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave020", "_routing": "emp12346"}}
+{"id": "leave020", "empid": "emp12346", "leave_type": "personal", "leave_start_date": "2025-11-21", "leave_end_date": "2025-11-24", "number_of_days": 4, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12346"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave021", "_routing": "emp12349"}}
+{"id": "leave021", "empid": "emp12349", "leave_type": "personal", "leave_start_date": "2025-04-01", "leave_end_date": "2025-04-06", "number_of_days": 6, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12349"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave022", "_routing": "emp12362"}}
+{"id": "leave022", "empid": "emp12362", "leave_type": "vacation", "leave_start_date": "2025-03-20", "leave_end_date": "2025-03-22", "number_of_days": 3, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12362"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave023", "_routing": "emp12374"}}
+{"id": "leave023", "empid": "emp12374", "leave_type": "sick", "leave_start_date": "2025-12-12", "leave_end_date": "2025-12-13", "number_of_days": 2, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12374"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave024", "_routing": "emp12347"}}
+{"id": "leave024", "empid": "emp12347", "leave_type": "personal", "leave_start_date": "2025-07-18", "leave_end_date": "2025-07-22", "number_of_days": 5, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12347"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave025", "_routing": "emp12360"}}
+{"id": "leave025", "empid": "emp12360", "leave_type": "vacation", "leave_start_date": "2025-12-17", "leave_end_date": "2025-12-22", "number_of_days": 6, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12360"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave026", "_routing": "emp12362"}}
+{"id": "leave026", "empid": "emp12362", "leave_type": "sick", "leave_start_date": "2025-11-12", "leave_end_date": "2025-11-13", "number_of_days": 2, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12362"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave027", "_routing": "emp12366"}}
+{"id": "leave027", "empid": "emp12366", "leave_type": "personal", "leave_start_date": "2025-10-30", "leave_end_date": "2025-10-31", "number_of_days": 2, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12366"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave028", "_routing": "emp12358"}}
+{"id": "leave028", "empid": "emp12358", "leave_type": "sick", "leave_start_date": "2025-06-08", "leave_end_date": "2025-06-12", "number_of_days": 5, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12358"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave029", "_routing": "emp12347"}}
+{"id": "leave029", "empid": "emp12347", "leave_type": "vacation", "leave_start_date": "2025-07-22", "leave_end_date": "2025-07-27", "number_of_days": 6, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12347"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave030", "_routing": "emp12361"}}
+{"id": "leave030", "empid": "emp12361", "leave_type": "vacation", "leave_start_date": "2025-10-18", "leave_end_date": "2025-10-21", "number_of_days": 4, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12361"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave031", "_routing": "emp12354"}}
+{"id": "leave031", "empid": "emp12354", "leave_type": "personal", "leave_start_date": "2025-09-05", "leave_end_date": "2025-09-09", "number_of_days": 5, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12354"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave032", "_routing": "emp12365"}}
+{"id": "leave032", "empid": "emp12365", "leave_type": "personal", "leave_start_date": "2025-01-13", "leave_end_date": "2025-01-14", "number_of_days": 2, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12365"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave033", "_routing": "emp12369"}}
+{"id": "leave033", "empid": "emp12369", "leave_type": "vacation", "leave_start_date": "2025-11-17", "leave_end_date": "2025-11-19", "number_of_days": 3, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12369"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave034", "_routing": "emp12360"}}
+{"id": "leave034", "empid": "emp12360", "leave_type": "personal", "leave_start_date": "2025-01-11", "leave_end_date": "2025-01-16", "number_of_days": 6, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12360"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave035", "_routing": "emp12345"}}
+{"id": "leave035", "empid": "emp12345", "leave_type": "personal", "leave_start_date": "2025-02-21", "leave_end_date": "2025-02-26", "number_of_days": 6, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12345"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave036", "_routing": "emp12374"}}
+{"id": "leave036", "empid": "emp12374", "leave_type": "vacation", "leave_start_date": "2025-03-16", "leave_end_date": "2025-03-17", "number_of_days": 2, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12374"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave037", "_routing": "emp12368"}}
+{"id": "leave037", "empid": "emp12368", "leave_type": "sick", "leave_start_date": "2025-07-20", "leave_end_date": "2025-07-21", "number_of_days": 2, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12368"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave038", "_routing": "emp12366"}}
+{"id": "leave038", "empid": "emp12366", "leave_type": "personal", "leave_start_date": "2025-03-25", "leave_end_date": "2025-03-26", "number_of_days": 2, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12366"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave039", "_routing": "emp12364"}}
+{"id": "leave039", "empid": "emp12364", "leave_type": "vacation", "leave_start_date": "2025-01-28", "leave_end_date": "2025-01-31", "number_of_days": 4, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12364"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave040", "_routing": "emp12366"}}
+{"id": "leave040", "empid": "emp12366", "leave_type": "sick", "leave_start_date": "2025-06-21", "leave_end_date": "2025-06-26", "number_of_days": 6, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12366"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave041", "_routing": "emp12353"}}
+{"id": "leave041", "empid": "emp12353", "leave_type": "sick", "leave_start_date": "2025-04-08", "leave_end_date": "2025-04-11", "number_of_days": 4, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12353"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave042", "_routing": "emp12346"}}
+{"id": "leave042", "empid": "emp12346", "leave_type": "vacation", "leave_start_date": "2025-11-06", "leave_end_date": "2025-11-10", "number_of_days": 5, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12346"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave043", "_routing": "emp12361"}}
+{"id": "leave043", "empid": "emp12361", "leave_type": "personal", "leave_start_date": "2025-02-04", "leave_end_date": "2025-02-09", "number_of_days": 6, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12361"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave044", "_routing": "emp12359"}}
+{"id": "leave044", "empid": "emp12359", "leave_type": "vacation", "leave_start_date": "2025-08-03", "leave_end_date": "2025-08-06", "number_of_days": 4, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12359"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave045", "_routing": "emp12362"}}
+{"id": "leave045", "empid": "emp12362", "leave_type": "sick", "leave_start_date": "2025-08-16", "leave_end_date": "2025-08-19", "number_of_days": 4, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12362"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave046", "_routing": "emp12358"}}
+{"id": "leave046", "empid": "emp12358", "leave_type": "vacation", "leave_start_date": "2025-09-10", "leave_end_date": "2025-09-15", "number_of_days": 6, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12358"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave047", "_routing": "emp12370"}}
+{"id": "leave047", "empid": "emp12370", "leave_type": "sick", "leave_start_date": "2025-08-14", "leave_end_date": "2025-08-15", "number_of_days": 2, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12370"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave048", "_routing": "emp12349"}}
+{"id": "leave048", "empid": "emp12349", "leave_type": "personal", "leave_start_date": "2025-02-02", "leave_end_date": "2025-02-06", "number_of_days": 5, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12349"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave049", "_routing": "emp12370"}}
+{"id": "leave049", "empid": "emp12370", "leave_type": "personal", "leave_start_date": "2025-04-01", "leave_end_date": "2025-04-02", "number_of_days": 2, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12370"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave050", "_routing": "emp12349"}}
+{"id": "leave050", "empid": "emp12349", "leave_type": "personal", "leave_start_date": "2025-01-03", "leave_end_date": "2025-01-06", "number_of_days": 4, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12349"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave051", "_routing": "emp12372"}}
+{"id": "leave051", "empid": "emp12372", "leave_type": "personal", "leave_start_date": "2025-01-26", "leave_end_date": "2025-01-28", "number_of_days": 3, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12372"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave052", "_routing": "emp12367"}}
+{"id": "leave052", "empid": "emp12367", "leave_type": "vacation", "leave_start_date": "2025-04-29", "leave_end_date": "2025-05-01", "number_of_days": 3, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12367"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave053", "_routing": "emp12360"}}
+{"id": "leave053", "empid": "emp12360", "leave_type": "personal", "leave_start_date": "2025-04-27", "leave_end_date": "2025-05-02", "number_of_days": 6, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12360"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave054", "_routing": "emp12362"}}
+{"id": "leave054", "empid": "emp12362", "leave_type": "personal", "leave_start_date": "2025-09-21", "leave_end_date": "2025-09-26", "number_of_days": 6, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12362"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave055", "_routing": "emp12373"}}
+{"id": "leave055", "empid": "emp12373", "leave_type": "vacation", "leave_start_date": "2025-05-17", "leave_end_date": "2025-05-18", "number_of_days": 2, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12373"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave056", "_routing": "emp12365"}}
+{"id": "leave056", "empid": "emp12365", "leave_type": "sick", "leave_start_date": "2025-10-19", "leave_end_date": "2025-10-24", "number_of_days": 6, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12365"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave057", "_routing": "emp12360"}}
+{"id": "leave057", "empid": "emp12360", "leave_type": "personal", "leave_start_date": "2025-07-27", "leave_end_date": "2025-07-28", "number_of_days": 2, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12360"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave058", "_routing": "emp12374"}}
+{"id": "leave058", "empid": "emp12374", "leave_type": "sick", "leave_start_date": "2025-02-01", "leave_end_date": "2025-02-04", "number_of_days": 4, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12374"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave059", "_routing": "emp12351"}}
+{"id": "leave059", "empid": "emp12351", "leave_type": "personal", "leave_start_date": "2025-08-25", "leave_end_date": "2025-08-28", "number_of_days": 4, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12351"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave060", "_routing": "emp12350"}}
+{"id": "leave060", "empid": "emp12350", "leave_type": "vacation", "leave_start_date": "2025-01-30", "leave_end_date": "2025-02-03", "number_of_days": 5, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12350"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave061", "_routing": "emp12360"}}
+{"id": "leave061", "empid": "emp12360", "leave_type": "vacation", "leave_start_date": "2025-05-03", "leave_end_date": "2025-05-07", "number_of_days": 5, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12360"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave062", "_routing": "emp12360"}}
+{"id": "leave062", "empid": "emp12360", "leave_type": "personal", "leave_start_date": "2025-09-07", "leave_end_date": "2025-09-09", "number_of_days": 3, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12360"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave063", "_routing": "emp12357"}}
+{"id": "leave063", "empid": "emp12357", "leave_type": "vacation", "leave_start_date": "2025-10-23", "leave_end_date": "2025-10-24", "number_of_days": 2, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12357"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave064", "_routing": "emp12346"}}
+{"id": "leave064", "empid": "emp12346", "leave_type": "vacation", "leave_start_date": "2025-01-13", "leave_end_date": "2025-01-16", "number_of_days": 4, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12346"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave065", "_routing": "emp12367"}}
+{"id": "leave065", "empid": "emp12367", "leave_type": "sick", "leave_start_date": "2025-07-02", "leave_end_date": "2025-07-06", "number_of_days": 5, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12367"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave066", "_routing": "emp12347"}}
+{"id": "leave066", "empid": "emp12347", "leave_type": "personal", "leave_start_date": "2025-12-23", "leave_end_date": "2025-12-28", "number_of_days": 6, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12347"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave067", "_routing": "emp12354"}}
+{"id": "leave067", "empid": "emp12354", "leave_type": "personal", "leave_start_date": "2025-07-11", "leave_end_date": "2025-07-12", "number_of_days": 2, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12354"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave068", "_routing": "emp12357"}}
+{"id": "leave068", "empid": "emp12357", "leave_type": "personal", "leave_start_date": "2025-07-03", "leave_end_date": "2025-07-06", "number_of_days": 4, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12357"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave069", "_routing": "emp12364"}}
+{"id": "leave069", "empid": "emp12364", "leave_type": "sick", "leave_start_date": "2025-11-01", "leave_end_date": "2025-11-02", "number_of_days": 2, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12364"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave070", "_routing": "emp12364"}}
+{"id": "leave070", "empid": "emp12364", "leave_type": "sick", "leave_start_date": "2025-07-16", "leave_end_date": "2025-07-21", "number_of_days": 6, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12364"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave071", "_routing": "emp12364"}}
+{"id": "leave071", "empid": "emp12364", "leave_type": "personal", "leave_start_date": "2025-12-30", "leave_end_date": "2026-01-03", "number_of_days": 5, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12364"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave072", "_routing": "emp12356"}}
+{"id": "leave072", "empid": "emp12356", "leave_type": "vacation", "leave_start_date": "2025-11-26", "leave_end_date": "2025-11-30", "number_of_days": 5, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12356"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave073", "_routing": "emp12361"}}
+{"id": "leave073", "empid": "emp12361", "leave_type": "vacation", "leave_start_date": "2025-04-10", "leave_end_date": "2025-04-11", "number_of_days": 2, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12361"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave074", "_routing": "emp12368"}}
+{"id": "leave074", "empid": "emp12368", "leave_type": "personal", "leave_start_date": "2025-05-11", "leave_end_date": "2025-05-12", "number_of_days": 2, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12368"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave075", "_routing": "emp12350"}}
+{"id": "leave075", "empid": "emp12350", "leave_type": "personal", "leave_start_date": "2025-12-03", "leave_end_date": "2025-12-07", "number_of_days": 5, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12350"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave076", "_routing": "emp12353"}}
+{"id": "leave076", "empid": "emp12353", "leave_type": "personal", "leave_start_date": "2025-02-05", "leave_end_date": "2025-02-09", "number_of_days": 5, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12353"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave077", "_routing": "emp12373"}}
+{"id": "leave077", "empid": "emp12373", "leave_type": "sick", "leave_start_date": "2025-04-21", "leave_end_date": "2025-04-22", "number_of_days": 2, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12373"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave078", "_routing": "emp12368"}}
+{"id": "leave078", "empid": "emp12368", "leave_type": "personal", "leave_start_date": "2025-11-08", "leave_end_date": "2025-11-13", "number_of_days": 6, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12368"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave079", "_routing": "emp12356"}}
+{"id": "leave079", "empid": "emp12356", "leave_type": "vacation", "leave_start_date": "2025-10-09", "leave_end_date": "2025-10-11", "number_of_days": 3, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12356"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave080", "_routing": "emp12374"}}
+{"id": "leave080", "empid": "emp12374", "leave_type": "sick", "leave_start_date": "2025-01-31", "leave_end_date": "2025-02-02", "number_of_days": 3, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12374"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave081", "_routing": "emp12370"}}
+{"id": "leave081", "empid": "emp12370", "leave_type": "vacation", "leave_start_date": "2025-05-24", "leave_end_date": "2025-05-28", "number_of_days": 5, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12370"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave082", "_routing": "emp12358"}}
+{"id": "leave082", "empid": "emp12358", "leave_type": "vacation", "leave_start_date": "2025-04-14", "leave_end_date": "2025-04-17", "number_of_days": 4, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12358"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave083", "_routing": "emp12356"}}
+{"id": "leave083", "empid": "emp12356", "leave_type": "personal", "leave_start_date": "2025-05-23", "leave_end_date": "2025-05-24", "number_of_days": 2, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12356"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave084", "_routing": "emp12358"}}
+{"id": "leave084", "empid": "emp12358", "leave_type": "vacation", "leave_start_date": "2025-07-25", "leave_end_date": "2025-07-28", "number_of_days": 4, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12358"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave085", "_routing": "emp12362"}}
+{"id": "leave085", "empid": "emp12362", "leave_type": "sick", "leave_start_date": "2025-07-10", "leave_end_date": "2025-07-14", "number_of_days": 5, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12362"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave086", "_routing": "emp12367"}}
+{"id": "leave086", "empid": "emp12367", "leave_type": "personal", "leave_start_date": "2025-03-21", "leave_end_date": "2025-03-24", "number_of_days": 4, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12367"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave087", "_routing": "emp12362"}}
+{"id": "leave087", "empid": "emp12362", "leave_type": "vacation", "leave_start_date": "2025-05-14", "leave_end_date": "2025-05-19", "number_of_days": 6, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12362"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave088", "_routing": "emp12359"}}
+{"id": "leave088", "empid": "emp12359", "leave_type": "vacation", "leave_start_date": "2025-08-15", "leave_end_date": "2025-08-17", "number_of_days": 3, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12359"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave089", "_routing": "emp12351"}}
+{"id": "leave089", "empid": "emp12351", "leave_type": "vacation", "leave_start_date": "2025-10-21", "leave_end_date": "2025-10-24", "number_of_days": 4, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12351"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave090", "_routing": "emp12374"}}
+{"id": "leave090", "empid": "emp12374", "leave_type": "vacation", "leave_start_date": "2025-05-25", "leave_end_date": "2025-05-30", "number_of_days": 6, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12374"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave091", "_routing": "emp12369"}}
+{"id": "leave091", "empid": "emp12369", "leave_type": "vacation", "leave_start_date": "2025-02-16", "leave_end_date": "2025-02-17", "number_of_days": 2, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12369"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave092", "_routing": "emp12373"}}
+{"id": "leave092", "empid": "emp12373", "leave_type": "personal", "leave_start_date": "2025-03-18", "leave_end_date": "2025-03-22", "number_of_days": 5, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12373"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave093", "_routing": "emp12353"}}
+{"id": "leave093", "empid": "emp12353", "leave_type": "vacation", "leave_start_date": "2025-11-14", "leave_end_date": "2025-11-16", "number_of_days": 3, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12353"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave094", "_routing": "emp12364"}}
+{"id": "leave094", "empid": "emp12364", "leave_type": "sick", "leave_start_date": "2025-06-22", "leave_end_date": "2025-06-24", "number_of_days": 3, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12364"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave095", "_routing": "emp12357"}}
+{"id": "leave095", "empid": "emp12357", "leave_type": "personal", "leave_start_date": "2025-06-10", "leave_end_date": "2025-06-15", "number_of_days": 6, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12357"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave096", "_routing": "emp12361"}}
+{"id": "leave096", "empid": "emp12361", "leave_type": "personal", "leave_start_date": "2025-11-06", "leave_end_date": "2025-11-08", "number_of_days": 3, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12361"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave097", "_routing": "emp12373"}}
+{"id": "leave097", "empid": "emp12373", "leave_type": "personal", "leave_start_date": "2025-04-08", "leave_end_date": "2025-04-11", "number_of_days": 4, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12373"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave098", "_routing": "emp12351"}}
+{"id": "leave098", "empid": "emp12351", "leave_type": "sick", "leave_start_date": "2025-01-20", "leave_end_date": "2025-01-22", "number_of_days": 3, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12351"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave099", "_routing": "emp12346"}}
+{"id": "leave099", "empid": "emp12346", "leave_type": "vacation", "leave_start_date": "2025-11-03", "leave_end_date": "2025-11-06", "number_of_days": 4, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12346"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave100", "_routing": "emp12354"}}
+{"id": "leave100", "empid": "emp12354", "leave_type": "personal", "leave_start_date": "2025-11-04", "leave_end_date": "2025-11-08", "number_of_days": 5, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12354"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave101", "_routing": "emp12362"}}
+{"id": "leave101", "empid": "emp12362", "leave_type": "personal", "leave_start_date": "2025-05-31", "leave_end_date": "2025-06-02", "number_of_days": 3, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12362"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave102", "_routing": "emp12359"}}
+{"id": "leave102", "empid": "emp12359", "leave_type": "vacation", "leave_start_date": "2025-04-03", "leave_end_date": "2025-04-06", "number_of_days": 4, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12359"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave103", "_routing": "emp12350"}}
+{"id": "leave103", "empid": "emp12350", "leave_type": "vacation", "leave_start_date": "2025-06-21", "leave_end_date": "2025-06-22", "number_of_days": 2, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12350"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave104", "_routing": "emp12347"}}
+{"id": "leave104", "empid": "emp12347", "leave_type": "vacation", "leave_start_date": "2025-07-16", "leave_end_date": "2025-07-20", "number_of_days": 5, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12347"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave105", "_routing": "emp12365"}}
+{"id": "leave105", "empid": "emp12365", "leave_type": "sick", "leave_start_date": "2025-10-28", "leave_end_date": "2025-11-01", "number_of_days": 5, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12365"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave106", "_routing": "emp12363"}}
+{"id": "leave106", "empid": "emp12363", "leave_type": "sick", "leave_start_date": "2025-01-07", "leave_end_date": "2025-01-08", "number_of_days": 2, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12363"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave107", "_routing": "emp12372"}}
+{"id": "leave107", "empid": "emp12372", "leave_type": "vacation", "leave_start_date": "2025-07-09", "leave_end_date": "2025-07-11", "number_of_days": 3, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12372"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave108", "_routing": "emp12366"}}
+{"id": "leave108", "empid": "emp12366", "leave_type": "sick", "leave_start_date": "2025-01-20", "leave_end_date": "2025-01-23", "number_of_days": 4, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12366"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave109", "_routing": "emp12368"}}
+{"id": "leave109", "empid": "emp12368", "leave_type": "vacation", "leave_start_date": "2025-05-09", "leave_end_date": "2025-05-11", "number_of_days": 3, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12368"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave110", "_routing": "emp12359"}}
+{"id": "leave110", "empid": "emp12359", "leave_type": "vacation", "leave_start_date": "2025-06-26", "leave_end_date": "2025-07-01", "number_of_days": 6, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12359"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave111", "_routing": "emp12352"}}
+{"id": "leave111", "empid": "emp12352", "leave_type": "sick", "leave_start_date": "2025-08-21", "leave_end_date": "2025-08-25", "number_of_days": 5, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12352"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave112", "_routing": "emp12361"}}
+{"id": "leave112", "empid": "emp12361", "leave_type": "personal", "leave_start_date": "2025-12-06", "leave_end_date": "2025-12-08", "number_of_days": 3, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12361"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave113", "_routing": "emp12354"}}
+{"id": "leave113", "empid": "emp12354", "leave_type": "sick", "leave_start_date": "2025-01-28", "leave_end_date": "2025-01-31", "number_of_days": 4, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12354"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave114", "_routing": "emp12367"}}
+{"id": "leave114", "empid": "emp12367", "leave_type": "sick", "leave_start_date": "2025-03-10", "leave_end_date": "2025-03-14", "number_of_days": 5, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12367"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave115", "_routing": "emp12358"}}
+{"id": "leave115", "empid": "emp12358", "leave_type": "vacation", "leave_start_date": "2025-01-17", "leave_end_date": "2025-01-18", "number_of_days": 2, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12358"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave116", "_routing": "emp12362"}}
+{"id": "leave116", "empid": "emp12362", "leave_type": "vacation", "leave_start_date": "2025-02-21", "leave_end_date": "2025-02-26", "number_of_days": 6, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12362"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave117", "_routing": "emp12347"}}
+{"id": "leave117", "empid": "emp12347", "leave_type": "sick", "leave_start_date": "2025-07-08", "leave_end_date": "2025-07-10", "number_of_days": 3, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12347"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave118", "_routing": "emp12357"}}
+{"id": "leave118", "empid": "emp12357", "leave_type": "sick", "leave_start_date": "2025-01-15", "leave_end_date": "2025-01-18", "number_of_days": 4, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12357"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave119", "_routing": "emp12361"}}
+{"id": "leave119", "empid": "emp12361", "leave_type": "vacation", "leave_start_date": "2025-06-17", "leave_end_date": "2025-06-18", "number_of_days": 2, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12361"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave120", "_routing": "emp12352"}}
+{"id": "leave120", "empid": "emp12352", "leave_type": "personal", "leave_start_date": "2025-12-30", "leave_end_date": "2025-12-31", "number_of_days": 2, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12352"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave121", "_routing": "emp12366"}}
+{"id": "leave121", "empid": "emp12366", "leave_type": "personal", "leave_start_date": "2025-09-09", "leave_end_date": "2025-09-11", "number_of_days": 3, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12366"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave122", "_routing": "emp12371"}}
+{"id": "leave122", "empid": "emp12371", "leave_type": "personal", "leave_start_date": "2025-12-29", "leave_end_date": "2025-12-30", "number_of_days": 2, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12371"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave123", "_routing": "emp12363"}}
+{"id": "leave123", "empid": "emp12363", "leave_type": "sick", "leave_start_date": "2025-09-01", "leave_end_date": "2025-09-02", "number_of_days": 2, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12363"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave124", "_routing": "emp12355"}}
+{"id": "leave124", "empid": "emp12355", "leave_type": "vacation", "leave_start_date": "2025-07-12", "leave_end_date": "2025-07-16", "number_of_days": 5, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12355"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave125", "_routing": "emp12349"}}
+{"id": "leave125", "empid": "emp12349", "leave_type": "vacation", "leave_start_date": "2025-07-27", "leave_end_date": "2025-07-30", "number_of_days": 4, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12349"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave126", "_routing": "emp12348"}}
+{"id": "leave126", "empid": "emp12348", "leave_type": "personal", "leave_start_date": "2025-06-14", "leave_end_date": "2025-06-17", "number_of_days": 4, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12348"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave127", "_routing": "emp12358"}}
+{"id": "leave127", "empid": "emp12358", "leave_type": "personal", "leave_start_date": "2025-02-11", "leave_end_date": "2025-02-14", "number_of_days": 4, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12358"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave128", "_routing": "emp12349"}}
+{"id": "leave128", "empid": "emp12349", "leave_type": "sick", "leave_start_date": "2025-09-03", "leave_end_date": "2025-09-07", "number_of_days": 5, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12349"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave129", "_routing": "emp12347"}}
+{"id": "leave129", "empid": "emp12347", "leave_type": "sick", "leave_start_date": "2025-01-18", "leave_end_date": "2025-01-22", "number_of_days": 5, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12347"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave130", "_routing": "emp12356"}}
+{"id": "leave130", "empid": "emp12356", "leave_type": "vacation", "leave_start_date": "2025-01-22", "leave_end_date": "2025-01-24", "number_of_days": 3, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12356"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave131", "_routing": "emp12374"}}
+{"id": "leave131", "empid": "emp12374", "leave_type": "personal", "leave_start_date": "2025-11-07", "leave_end_date": "2025-11-09", "number_of_days": 3, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12374"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave132", "_routing": "emp12352"}}
+{"id": "leave132", "empid": "emp12352", "leave_type": "personal", "leave_start_date": "2025-02-26", "leave_end_date": "2025-03-02", "number_of_days": 5, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12352"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave133", "_routing": "emp12373"}}
+{"id": "leave133", "empid": "emp12373", "leave_type": "vacation", "leave_start_date": "2025-05-12", "leave_end_date": "2025-05-15", "number_of_days": 4, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12373"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave134", "_routing": "emp12368"}}
+{"id": "leave134", "empid": "emp12368", "leave_type": "sick", "leave_start_date": "2025-11-03", "leave_end_date": "2025-11-07", "number_of_days": 5, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12368"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave135", "_routing": "emp12360"}}
+{"id": "leave135", "empid": "emp12360", "leave_type": "personal", "leave_start_date": "2025-01-20", "leave_end_date": "2025-01-23", "number_of_days": 4, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12360"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave136", "_routing": "emp12351"}}
+{"id": "leave136", "empid": "emp12351", "leave_type": "sick", "leave_start_date": "2025-11-27", "leave_end_date": "2025-11-30", "number_of_days": 4, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12351"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave137", "_routing": "emp12359"}}
+{"id": "leave137", "empid": "emp12359", "leave_type": "sick", "leave_start_date": "2025-06-23", "leave_end_date": "2025-06-27", "number_of_days": 5, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12359"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave138", "_routing": "emp12370"}}
+{"id": "leave138", "empid": "emp12370", "leave_type": "personal", "leave_start_date": "2025-12-04", "leave_end_date": "2025-12-08", "number_of_days": 5, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12370"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave139", "_routing": "emp12347"}}
+{"id": "leave139", "empid": "emp12347", "leave_type": "sick", "leave_start_date": "2025-07-31", "leave_end_date": "2025-08-04", "number_of_days": 5, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12347"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave140", "_routing": "emp12357"}}
+{"id": "leave140", "empid": "emp12357", "leave_type": "personal", "leave_start_date": "2025-09-23", "leave_end_date": "2025-09-24", "number_of_days": 2, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12357"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave141", "_routing": "emp12346"}}
+{"id": "leave141", "empid": "emp12346", "leave_type": "personal", "leave_start_date": "2025-08-17", "leave_end_date": "2025-08-20", "number_of_days": 4, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12346"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave142", "_routing": "emp12370"}}
+{"id": "leave142", "empid": "emp12370", "leave_type": "personal", "leave_start_date": "2025-07-17", "leave_end_date": "2025-07-20", "number_of_days": 4, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12370"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave143", "_routing": "emp12362"}}
+{"id": "leave143", "empid": "emp12362", "leave_type": "personal", "leave_start_date": "2025-07-17", "leave_end_date": "2025-07-21", "number_of_days": 5, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12362"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave144", "_routing": "emp12347"}}
+{"id": "leave144", "empid": "emp12347", "leave_type": "sick", "leave_start_date": "2025-03-17", "leave_end_date": "2025-03-18", "number_of_days": 2, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12347"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave145", "_routing": "emp12347"}}
+{"id": "leave145", "empid": "emp12347", "leave_type": "sick", "leave_start_date": "2025-01-27", "leave_end_date": "2025-01-31", "number_of_days": 5, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12347"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave146", "_routing": "emp12351"}}
+{"id": "leave146", "empid": "emp12351", "leave_type": "sick", "leave_start_date": "2025-04-18", "leave_end_date": "2025-04-23", "number_of_days": 6, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12351"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave147", "_routing": "emp12354"}}
+{"id": "leave147", "empid": "emp12354", "leave_type": "vacation", "leave_start_date": "2025-04-29", "leave_end_date": "2025-05-01", "number_of_days": 3, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12354"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave148", "_routing": "emp12373"}}
+{"id": "leave148", "empid": "emp12373", "leave_type": "vacation", "leave_start_date": "2025-02-01", "leave_end_date": "2025-02-06", "number_of_days": 6, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12373"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave149", "_routing": "emp12349"}}
+{"id": "leave149", "empid": "emp12349", "leave_type": "vacation", "leave_start_date": "2025-08-02", "leave_end_date": "2025-08-05", "number_of_days": 4, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12349"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave150", "_routing": "emp12357"}}
+{"id": "leave150", "empid": "emp12357", "leave_type": "personal", "leave_start_date": "2025-06-28", "leave_end_date": "2025-06-29", "number_of_days": 2, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12357"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave151", "_routing": "emp12364"}}
+{"id": "leave151", "empid": "emp12364", "leave_type": "sick", "leave_start_date": "2025-12-17", "leave_end_date": "2025-12-18", "number_of_days": 2, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12364"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave152", "_routing": "emp12352"}}
+{"id": "leave152", "empid": "emp12352", "leave_type": "personal", "leave_start_date": "2025-03-17", "leave_end_date": "2025-03-18", "number_of_days": 2, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12352"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave153", "_routing": "emp12373"}}
+{"id": "leave153", "empid": "emp12373", "leave_type": "sick", "leave_start_date": "2025-09-23", "leave_end_date": "2025-09-26", "number_of_days": 4, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12373"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave154", "_routing": "emp12348"}}
+{"id": "leave154", "empid": "emp12348", "leave_type": "personal", "leave_start_date": "2025-04-08", "leave_end_date": "2025-04-09", "number_of_days": 2, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12348"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave155", "_routing": "emp12367"}}
+{"id": "leave155", "empid": "emp12367", "leave_type": "sick", "leave_start_date": "2025-01-26", "leave_end_date": "2025-01-27", "number_of_days": 2, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12367"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave156", "_routing": "emp12348"}}
+{"id": "leave156", "empid": "emp12348", "leave_type": "personal", "leave_start_date": "2025-06-01", "leave_end_date": "2025-06-06", "number_of_days": 6, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12348"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave157", "_routing": "emp12360"}}
+{"id": "leave157", "empid": "emp12360", "leave_type": "vacation", "leave_start_date": "2025-02-19", "leave_end_date": "2025-02-22", "number_of_days": 4, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12360"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave158", "_routing": "emp12358"}}
+{"id": "leave158", "empid": "emp12358", "leave_type": "vacation", "leave_start_date": "2025-07-18", "leave_end_date": "2025-07-21", "number_of_days": 4, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12358"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave159", "_routing": "emp12373"}}
+{"id": "leave159", "empid": "emp12373", "leave_type": "personal", "leave_start_date": "2025-09-18", "leave_end_date": "2025-09-20", "number_of_days": 3, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12373"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave160", "_routing": "emp12371"}}
+{"id": "leave160", "empid": "emp12371", "leave_type": "personal", "leave_start_date": "2025-11-27", "leave_end_date": "2025-11-28", "number_of_days": 2, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12371"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave161", "_routing": "emp12367"}}
+{"id": "leave161", "empid": "emp12367", "leave_type": "personal", "leave_start_date": "2025-10-06", "leave_end_date": "2025-10-11", "number_of_days": 6, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12367"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave162", "_routing": "emp12347"}}
+{"id": "leave162", "empid": "emp12347", "leave_type": "sick", "leave_start_date": "2025-06-21", "leave_end_date": "2025-06-23", "number_of_days": 3, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12347"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave163", "_routing": "emp12346"}}
+{"id": "leave163", "empid": "emp12346", "leave_type": "personal", "leave_start_date": "2025-05-14", "leave_end_date": "2025-05-17", "number_of_days": 4, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12346"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave164", "_routing": "emp12349"}}
+{"id": "leave164", "empid": "emp12349", "leave_type": "personal", "leave_start_date": "2025-04-10", "leave_end_date": "2025-04-14", "number_of_days": 5, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12349"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave165", "_routing": "emp12359"}}
+{"id": "leave165", "empid": "emp12359", "leave_type": "vacation", "leave_start_date": "2025-10-15", "leave_end_date": "2025-10-16", "number_of_days": 2, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12359"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave166", "_routing": "emp12348"}}
+{"id": "leave166", "empid": "emp12348", "leave_type": "sick", "leave_start_date": "2025-01-24", "leave_end_date": "2025-01-28", "number_of_days": 5, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12348"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave167", "_routing": "emp12347"}}
+{"id": "leave167", "empid": "emp12347", "leave_type": "vacation", "leave_start_date": "2025-03-12", "leave_end_date": "2025-03-15", "number_of_days": 4, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12347"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave168", "_routing": "emp12352"}}
+{"id": "leave168", "empid": "emp12352", "leave_type": "vacation", "leave_start_date": "2025-09-20", "leave_end_date": "2025-09-22", "number_of_days": 3, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12352"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave169", "_routing": "emp12352"}}
+{"id": "leave169", "empid": "emp12352", "leave_type": "sick", "leave_start_date": "2025-12-04", "leave_end_date": "2025-12-07", "number_of_days": 4, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12352"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave170", "_routing": "emp12348"}}
+{"id": "leave170", "empid": "emp12348", "leave_type": "sick", "leave_start_date": "2025-08-24", "leave_end_date": "2025-08-28", "number_of_days": 5, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12348"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave171", "_routing": "emp12371"}}
+{"id": "leave171", "empid": "emp12371", "leave_type": "personal", "leave_start_date": "2025-01-04", "leave_end_date": "2025-01-07", "number_of_days": 4, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12371"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave172", "_routing": "emp12357"}}
+{"id": "leave172", "empid": "emp12357", "leave_type": "vacation", "leave_start_date": "2025-06-20", "leave_end_date": "2025-06-24", "number_of_days": 5, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12357"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave173", "_routing": "emp12367"}}
+{"id": "leave173", "empid": "emp12367", "leave_type": "personal", "leave_start_date": "2025-01-14", "leave_end_date": "2025-01-18", "number_of_days": 5, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12367"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave174", "_routing": "emp12355"}}
+{"id": "leave174", "empid": "emp12355", "leave_type": "sick", "leave_start_date": "2025-10-17", "leave_end_date": "2025-10-22", "number_of_days": 6, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12355"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave175", "_routing": "emp12370"}}
+{"id": "leave175", "empid": "emp12370", "leave_type": "personal", "leave_start_date": "2025-05-04", "leave_end_date": "2025-05-06", "number_of_days": 3, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12370"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave176", "_routing": "emp12351"}}
+{"id": "leave176", "empid": "emp12351", "leave_type": "personal", "leave_start_date": "2025-05-31", "leave_end_date": "2025-06-03", "number_of_days": 4, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12351"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave177", "_routing": "emp12360"}}
+{"id": "leave177", "empid": "emp12360", "leave_type": "sick", "leave_start_date": "2025-03-30", "leave_end_date": "2025-03-31", "number_of_days": 2, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12360"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave178", "_routing": "emp12371"}}
+{"id": "leave178", "empid": "emp12371", "leave_type": "vacation", "leave_start_date": "2025-11-17", "leave_end_date": "2025-11-18", "number_of_days": 2, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12371"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave179", "_routing": "emp12361"}}
+{"id": "leave179", "empid": "emp12361", "leave_type": "personal", "leave_start_date": "2025-09-04", "leave_end_date": "2025-09-08", "number_of_days": 5, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12361"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave180", "_routing": "emp12371"}}
+{"id": "leave180", "empid": "emp12371", "leave_type": "personal", "leave_start_date": "2025-12-29", "leave_end_date": "2025-12-31", "number_of_days": 3, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12371"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave181", "_routing": "emp12365"}}
+{"id": "leave181", "empid": "emp12365", "leave_type": "sick", "leave_start_date": "2025-06-28", "leave_end_date": "2025-07-03", "number_of_days": 6, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12365"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave182", "_routing": "emp12357"}}
+{"id": "leave182", "empid": "emp12357", "leave_type": "personal", "leave_start_date": "2025-09-04", "leave_end_date": "2025-09-09", "number_of_days": 6, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12357"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave183", "_routing": "emp12364"}}
+{"id": "leave183", "empid": "emp12364", "leave_type": "vacation", "leave_start_date": "2025-05-31", "leave_end_date": "2025-06-04", "number_of_days": 5, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12364"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave184", "_routing": "emp12371"}}
+{"id": "leave184", "empid": "emp12371", "leave_type": "vacation", "leave_start_date": "2025-01-30", "leave_end_date": "2025-02-03", "number_of_days": 5, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12371"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave185", "_routing": "emp12363"}}
+{"id": "leave185", "empid": "emp12363", "leave_type": "sick", "leave_start_date": "2025-05-26", "leave_end_date": "2025-05-30", "number_of_days": 5, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12363"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave186", "_routing": "emp12345"}}
+{"id": "leave186", "empid": "emp12345", "leave_type": "vacation", "leave_start_date": "2025-12-15", "leave_end_date": "2025-12-17", "number_of_days": 3, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12345"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave187", "_routing": "emp12367"}}
+{"id": "leave187", "empid": "emp12367", "leave_type": "sick", "leave_start_date": "2025-11-26", "leave_end_date": "2025-12-01", "number_of_days": 6, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12367"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave188", "_routing": "emp12353"}}
+{"id": "leave188", "empid": "emp12353", "leave_type": "personal", "leave_start_date": "2025-04-21", "leave_end_date": "2025-04-23", "number_of_days": 3, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12353"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave189", "_routing": "emp12362"}}
+{"id": "leave189", "empid": "emp12362", "leave_type": "vacation", "leave_start_date": "2025-07-14", "leave_end_date": "2025-07-19", "number_of_days": 6, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12362"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave190", "_routing": "emp12353"}}
+{"id": "leave190", "empid": "emp12353", "leave_type": "personal", "leave_start_date": "2025-06-28", "leave_end_date": "2025-07-02", "number_of_days": 5, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12353"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave191", "_routing": "emp12364"}}
+{"id": "leave191", "empid": "emp12364", "leave_type": "sick", "leave_start_date": "2025-08-09", "leave_end_date": "2025-08-12", "number_of_days": 4, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12364"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave192", "_routing": "emp12369"}}
+{"id": "leave192", "empid": "emp12369", "leave_type": "vacation", "leave_start_date": "2025-01-01", "leave_end_date": "2025-01-05", "number_of_days": 5, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12369"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave193", "_routing": "emp12368"}}
+{"id": "leave193", "empid": "emp12368", "leave_type": "sick", "leave_start_date": "2025-10-30", "leave_end_date": "2025-11-01", "number_of_days": 3, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12368"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave194", "_routing": "emp12350"}}
+{"id": "leave194", "empid": "emp12350", "leave_type": "sick", "leave_start_date": "2025-12-11", "leave_end_date": "2025-12-12", "number_of_days": 2, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12350"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave195", "_routing": "emp12359"}}
+{"id": "leave195", "empid": "emp12359", "leave_type": "personal", "leave_start_date": "2025-01-25", "leave_end_date": "2025-01-29", "number_of_days": 5, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12359"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave196", "_routing": "emp12358"}}
+{"id": "leave196", "empid": "emp12358", "leave_type": "vacation", "leave_start_date": "2025-08-19", "leave_end_date": "2025-08-22", "number_of_days": 4, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12358"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave197", "_routing": "emp12349"}}
+{"id": "leave197", "empid": "emp12349", "leave_type": "personal", "leave_start_date": "2025-12-19", "leave_end_date": "2025-12-24", "number_of_days": 6, "leave_status": "pending", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12349"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave198", "_routing": "emp12362"}}
+{"id": "leave198", "empid": "emp12362", "leave_type": "personal", "leave_start_date": "2025-01-24", "leave_end_date": "2025-01-28", "number_of_days": 5, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12362"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave199", "_routing": "emp12374"}}
+{"id": "leave199", "empid": "emp12374", "leave_type": "personal", "leave_start_date": "2025-09-20", "leave_end_date": "2025-09-25", "number_of_days": 6, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12374"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave200", "_routing": "emp12365"}}
+{"id": "leave200", "empid": "emp12365", "leave_type": "vacation", "leave_start_date": "2025-12-04", "leave_end_date": "2025-12-08", "number_of_days": 5, "leave_status": "denied", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12365"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave201", "_routing": "emp12351"}}
+{"id": "leave201", "empid": "emp12351", "leave_type": "vacation", "leave_start_date": "2025-01-10", "leave_end_date": "2025-01-14", "number_of_days": 5, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12351"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave202", "_routing": "emp12353"}}
+{"id": "leave202", "empid": "emp12353", "leave_type": "vacation", "leave_start_date": "2025-01-10", "leave_end_date": "2025-01-14", "number_of_days": 5, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12353"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave203", "_routing": "emp12345"}}
+{"id": "leave203", "empid": "emp12345", "leave_type": "vacation", "leave_start_date": "2025-01-10", "leave_end_date": "2025-01-14", "number_of_days": 5, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12345"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave204", "_routing": "emp12350"}}
+{"id": "leave204", "empid": "emp12350", "leave_type": "vacation", "leave_start_date": "2025-01-10", "leave_end_date": "2025-01-14", "number_of_days": 5, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12350"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave205", "_routing": "emp12363"}}
+{"id": "leave205", "empid": "emp12363", "leave_type": "vacation", "leave_start_date": "2025-01-10", "leave_end_date": "2025-01-14", "number_of_days": 5, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12363"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave206", "_routing": "emp12374"}}
+{"id": "leave206", "empid": "emp12374", "leave_type": "vacation", "leave_start_date": "2025-01-10", "leave_end_date": "2025-01-14", "number_of_days": 5, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12374"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave207", "_routing": "emp12361"}}
+{"id": "leave207", "empid": "emp12361", "leave_type": "vacation", "leave_start_date": "2025-01-10", "leave_end_date": "2025-01-14", "number_of_days": 5, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12361"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave208", "_routing": "emp12371"}}
+{"id": "leave208", "empid": "emp12371", "leave_type": "vacation", "leave_start_date": "2025-01-10", "leave_end_date": "2025-01-14", "number_of_days": 5, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12371"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave209", "_routing": "emp12361"}}
+{"id": "leave209", "empid": "emp12361", "leave_type": "vacation", "leave_start_date": "2025-01-10", "leave_end_date": "2025-01-14", "number_of_days": 5, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12361"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave210", "_routing": "emp12352"}}
+{"id": "leave210", "empid": "emp12352", "leave_type": "vacation", "leave_start_date": "2025-01-10", "leave_end_date": "2025-01-14", "number_of_days": 5, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12352"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave211", "_routing": "emp12354"}}
+{"id": "leave211", "empid": "emp12354", "leave_type": "vacation", "leave_start_date": "2025-08-15", "leave_end_date": "2025-08-21", "number_of_days": 7, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12354"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave212", "_routing": "emp12361"}}
+{"id": "leave212", "empid": "emp12361", "leave_type": "vacation", "leave_start_date": "2025-08-15", "leave_end_date": "2025-08-21", "number_of_days": 7, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12361"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave213", "_routing": "emp12364"}}
+{"id": "leave213", "empid": "emp12364", "leave_type": "vacation", "leave_start_date": "2025-08-15", "leave_end_date": "2025-08-21", "number_of_days": 7, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12364"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave214", "_routing": "emp12365"}}
+{"id": "leave214", "empid": "emp12365", "leave_type": "vacation", "leave_start_date": "2025-08-15", "leave_end_date": "2025-08-21", "number_of_days": 7, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12365"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave215", "_routing": "emp12350"}}
+{"id": "leave215", "empid": "emp12350", "leave_type": "vacation", "leave_start_date": "2025-08-15", "leave_end_date": "2025-08-21", "number_of_days": 7, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12350"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave216", "_routing": "emp12367"}}
+{"id": "leave216", "empid": "emp12367", "leave_type": "vacation", "leave_start_date": "2025-08-15", "leave_end_date": "2025-08-21", "number_of_days": 7, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12367"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave217", "_routing": "emp12356"}}
+{"id": "leave217", "empid": "emp12356", "leave_type": "vacation", "leave_start_date": "2025-08-15", "leave_end_date": "2025-08-21", "number_of_days": 7, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12356"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave218", "_routing": "emp12373"}}
+{"id": "leave218", "empid": "emp12373", "leave_type": "vacation", "leave_start_date": "2025-08-15", "leave_end_date": "2025-08-21", "number_of_days": 7, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12373"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave219", "_routing": "emp12362"}}
+{"id": "leave219", "empid": "emp12362", "leave_type": "vacation", "leave_start_date": "2025-08-15", "leave_end_date": "2025-08-21", "number_of_days": 7, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12362"}}
+{"index": {"_index": "employee-parent-child27", "_id": "leave220", "_routing": "emp12374"}}
+{"id": "leave220", "empid": "emp12374", "leave_type": "vacation", "leave_start_date": "2025-08-15", "leave_end_date": "2025-08-21", "number_of_days": 7, "leave_status": "approved", "tablename": "leaves", "emp-join-field": {"name": "leaves", "parent": "emp12374"}}
