@@ -1,6 +1,7 @@
 package com.example.elasticapi.config;
 
 import org.apache.http.HttpHost;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.elasticsearch.client.RestClient;
@@ -18,12 +19,16 @@ public class ElasticConfig {
     @Value("${spring.elasticsearch.rest.port}")
     private int elasticsearchPort;
 
+    @Value("${spring.elasticsearch.index.name}")
+    public String getElasticsearchHost;
+
 //    @Value("${spring.elasticsearch.rest.connection-timeout}")
 //    private String connectionTimeout;
 //
 //    @Value("${spring.elasticsearch.rest.read-timeout}")
 //    private String readTimeout;
     @Bean
+    @ConditionalOnMissingBean(RestClient.class)
     public RestClient restClient() {
 
         return RestClient.builder(

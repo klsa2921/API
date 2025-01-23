@@ -1,5 +1,6 @@
 package com.example.elasticapi.service;
 
+import com.example.elasticapi.config.ElasticConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.WrapperQueryBuilder;
@@ -39,9 +40,12 @@ public class ElasticsearchService {
     private RestClient restClient;
 
 
-
+    @Autowired
+    private ElasticConfig config;
     @Autowired
     private RestTemplate restTemplate;
+    @Autowired
+    private ElasticConfig elasticConfig;
 
     public String search( String queryJson) throws IOException {
         // Send the request to Elasticsearch with the query provided in the body
@@ -79,7 +83,7 @@ public class ElasticsearchService {
         try {
             boolean isConnected = client.ping(RequestOptions.DEFAULT);
             System.out.println("Elasticsearch connected: " + isConnected);
-            SearchRequest searchRequest = new SearchRequest("employee-parent-child25");
+            SearchRequest searchRequest = new SearchRequest(elasticConfig.getElasticsearchHost);
             SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 
             WrapperQueryBuilder wrapperQuery = QueryBuilders.wrapperQuery(query);
@@ -105,7 +109,8 @@ public class ElasticsearchService {
 
             boolean isConnected = client.ping(RequestOptions.DEFAULT);
             System.out.println("Elasticsearch connected: " + isConnected);
-            SearchRequest searchRequest = new SearchRequest("employee-parent-child25");
+
+            SearchRequest searchRequest = new SearchRequest(elasticConfig.getElasticsearchHost);
             SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 
             WrapperQueryBuilder wrapperQuery = QueryBuilders.wrapperQuery(query);
@@ -117,6 +122,7 @@ public class ElasticsearchService {
                     String filterField = entry.getKey();
                     Object filterValue = entry.getValue();
                     boolQuery.must(QueryBuilders.termQuery(filterField, filterValue));
+
                 }
                 searchSourceBuilder.postFilter(boolQuery);
             }
@@ -131,25 +137,6 @@ public class ElasticsearchService {
             return e.getMessage().toString();
         }
 
-    }
-
-    private String generateQueryWithFilter(String query,String filterField,String filterValue){
-        String filterQuery=String.format(
-                "{\n" +
-                        "    \"query\": {\n" +
-                        "        \"bool\": {\n" +
-                        "            \"filter\": [\n" +
-                        "                {\n" +
-                        "                    \"term\": {\n" +
-                        "                        \"%s\": \"%s\"\n" +
-                        "                    }\n" +
-                        "                }\n" +
-                        "            ], %s\n" +
-                        "        }\n" +
-                        "    }\n" +
-                        "}", filterField, filterValue, query);
-
-        return null;
     }
 
     public IndexResponse  indexUsingElasticSearchClient(String data) throws IOException {
