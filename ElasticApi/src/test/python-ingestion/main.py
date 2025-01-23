@@ -89,11 +89,7 @@ def load_csv_files():
 
     return employees,family_members,addresses,salarys,joiningDate,leave_records
 
-es = Elasticsearch([{'host': '192.168.1.27', 'port': 9200, 'scheme': 'http'}])
-# es = Elasticsearch([{'host': 'localhost', 'port': 9200, 'scheme': 'http'}])
 
-
-parent_child_index = 'employee-parent-child26'
 
 
 def generate_bulk_data_for_parent_child(employees, family_members, addresses,salarys,joiningDate,leave_records, index_name):
@@ -222,6 +218,11 @@ def generate_bulk_data_for_parent_child(employees, family_members, addresses,sal
                 "emp-join-field": {"name": "leaves", "parent": leave.empid}  # Linking leave to employee
             }
         }
+es = Elasticsearch([{'host': '192.168.1.27', 'port': 9200, 'scheme': 'http'}])
+# es = Elasticsearch([{'host': 'localhost', 'port': 9200, 'scheme': 'http'}])
+
+
+parent_child_index = 'employee-parent-child26'
 
 try:
     employees, family_members, addresses, salarys, joiningDate, leave_records = load_csv_files()

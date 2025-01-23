@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.WrapperQueryBuilder;
 import org.elasticsearch.xcontent.XContentType;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.springframework.stereotype.Service;
 import org.apache.http.entity.ContentType;
 import org.elasticsearch.client.Request;
@@ -23,7 +25,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.io.IOException;
 import java.util.Map;
-
+import org.json.JSONObject;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
@@ -73,10 +75,27 @@ public class ElasticsearchService {
     }
 
     private final RestHighLevelClient client;
-    private final ObjectMapper objectMapper;
-    public ElasticsearchService(RestHighLevelClient client, ObjectMapper objectMapper) {
+
+    public String searchByRestAPIWithFilter(String query,String filter) throws JSONException {
+        JSONObject jsonObject = new JSONObject(query);
+        JSONObject boolObject= jsonObject.getJSONObject("query").getJSONObject("bool");
+        JSONObject filterObject= new JSONObject(filter);
+        JSONArray filterArray=filterObject.getJSONArray("filter");
+        boolObject.put("filter",filterArray);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> request = new HttpEntity<>(jsonObject.toString(), headers);
+        ResponseEntity<String> response = restTemplate.postForEntity("http://192.168.1.27:9200/employee-parent-child26/_search", request, String.class);
+        if (response.getStatusCode().is2xxSuccessful()) {
+            return response.getBody();
+        } else {
+            return "Error calling API: " + response.getStatusCode();
+        }
+    }
+
+    public ElasticsearchService(RestHighLevelClient client) {
         this.client = client;
-        this.objectMapper=objectMapper;
     }
 
     public String searchWithElasticSearchClient(String query) throws IOException {

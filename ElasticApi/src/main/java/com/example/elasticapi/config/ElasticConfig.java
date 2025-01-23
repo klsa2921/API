@@ -27,6 +27,7 @@ public class ElasticConfig {
 //
 //    @Value("${spring.elasticsearch.rest.read-timeout}")
 //    private String readTimeout;
+
     @Bean
     @ConditionalOnMissingBean(RestClient.class)
     public RestClient restClient() {
