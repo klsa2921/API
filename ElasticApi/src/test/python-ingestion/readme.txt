@@ -1,5 +1,7 @@
 1.Before Testing the search queries run the main.py python file.change the parent_child_index
 to the index you want to ingest the data.
+                    or
+ You can use the  kibana dev console queries present in this file ingest/ingest.json.run them in the kibana dev console.
 
 To test the below endpoints use the queries provided:
 1.for /api/searchByUsingClient query is
