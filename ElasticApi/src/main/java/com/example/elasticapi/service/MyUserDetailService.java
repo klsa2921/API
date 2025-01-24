@@ -8,6 +8,7 @@ import org.springframework.context.support.BeanDefinitionDsl;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.sql.*;
@@ -26,7 +27,7 @@ public class MyUserDetailService implements UserDetailsService {
         }
         return new MyUserDetails(user);
     }
-
+    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
     public User getUserByUsername(String username) {
         String sql = "SELECT id, username, password ,role FROM users WHERE username = ?";
@@ -57,5 +58,23 @@ public class MyUserDetailService implements UserDetailsService {
         }
 
         return user;
+    }
+
+    public String register(User user) {
+        String sql = "INSERT INTO users (username, password,role)\n" +
+                "VALUES(?,?,?)";
+
+
+        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:src/main/resources/db/user.db");
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2, encoder.encode( user.getPassword()));
+            preparedStatement.setString(3, user.getRole().stream().map(Roles::name).collect(Collectors.joining(",")));
+            preparedStatement.executeUpdate();
+            return "ingested successfully";
+        }catch (Exception e){
+            return e.getMessage();
+        }
     }
 }
